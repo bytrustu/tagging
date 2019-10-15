@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+	<%- partial('layout/layout_head.ejs') %>
+	<body>
+		<%- partial('layout/layout_header.ejs') %>
+
+		<section id="headline" class="section">
+			<div class="container">
+				<div class="left_comment"">동영상의</div>
+				<div class="right_comment">를 지정하세요</div>
+				<div class="left">[</div>
+				<div class="right">]</div>
+				<div class="bottom">유튜브 태깅 서비스</div>
+				<img class="logo" src="/images/logo/logo.png" alt="tagging">
+				<div id="wording_slider">
+						<div class="slider">
+							<div class="slider_item_wrapper" style="transition: none 0s ease 0s; height: 248px; top: 0px;">
+								<div class="item"># 영화/애니메이션</div>
+								<div class="item"># 자동차/교통</div>
+								<div class="item"># 음악</div>
+								<div class="item"># 애완동물/동물</div>
+								<div class="item"># 스포츠</div>
+								<div class="item"># 여행/이벤트</div>
+								<div class="item"># 게임</div>
+								<div class="item"># 인물/블로그</div>
+								<div class="item"># 코미디</div>
+								<div class="item"># 엔터테인먼트</div>
+								<div class="item"># 뉴스/정치</div>
+								<div class="item"># 노하우/스타일</div>
+								<div class="item"># 교육</div>
+								<div class="item"># 과학기술</div>
+								<div class="item"># 비영리/사회운동</div>
+							</div>
+						</div>
+					</div>
+			</div>
+		</section>
+
+		<section id="items" class="section">
+			<div class="container">
+				<div class="item_list">
+					<a href="#"><div class="item item_first"><img src="/images/index/hashtag.png" class="icon"><h5 class="title">조회</h5><div class="button">바로가기</div></div></a>
+					<a href="#"><div class="item item_second"><img src="/images/index/interface.png" class="icon"><h5 class="title">분류</h5><div class="button">바로가기</div></div></a>
+					<a href="#"><div class="item item_third"><img src="/images/index/analytics.png" class="icon"><h5 class="title">통계</h5><div class="button">바로가기</div></div></a>
+				</div>
+			</div>
+		</section>
+
+		
+
+
+
+		<%- partial('layout/layout_footer.ejs') %>
+	</body>
+	<%- partial('layout/layout_script.ejs') %>
+
+	<script>
+		$(document).ready(function(){
+			let idx = 0;
+			let flag = 1;
+			setInterval(()=>{
+				const max = $('.slider_item_wrapper .item').length;
+				
+				if (idx === max - 1) flag = -1;
+				if (idx === 0) flag = 1;
+				console.log(flag);
+				$('.slider_item_wrapper').css({
+					'transition':'all 0.25s ease-out 0s',
+					'height':'248px',
+					'top':`${(idx) * -31}px`});
+				idx += flag;
+			},2000)
+		});
+	</script>
+ 
+</html>

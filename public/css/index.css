@@ -719,8 +719,52 @@ footer {
     .right_comment {
         visibility: hidden;
     }
+}
 
+@media screen and (max-width: 430px){
     .item_list .title {
         margin-top: 1rem;
+    }
+
+    #lecture .section_list {
+        display: block;
+        height: auto;
+    }
+
+    #lecture .item_section {
+        width: 100%;
+        float: none;
+        padding: 0;
+    }
+
+    #lecture .item_section .section_title {
+        padding-left: 43.6px;
+    }
+
+    #lecture .item_section .section_subtitle {
+        margin: 21px 0 0 30px;
+    }
+
+    #lecture .item_list {
+        width: 100%;
+        height: 145px;
+        margin: 27px 0 45.7px;
+        padding-left: 22px;
+    }
+
+    #lecture .item_list {
+        padding-left: 20.4px;
+    }
+
+    #lecture .item_list .item {
+        width: 324px;
+    }
+
+    #lecture .item_list .item .image {
+        width: 134px;
+    }
+
+    #lecture .item_list .item .column {
+        width: 190px;
     }
 }

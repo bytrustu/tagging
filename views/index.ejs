@@ -376,42 +376,5 @@
 		<%- partial('layout/layout_footer.ejs') %>
 	</body>
 	<%- partial('layout/layout_script.ejs') %>
-
-	<script>
-		$(document).ready(function(){
-			let idx = 0;
-			let flag = 1;
-			setInterval(()=>{
-				const max = $('.slider_item_wrapper .item').length;
-				
-				if (idx === max - 1) flag = -1;
-				if (idx === 0) flag = 1;
-				console.log(flag);
-				$('.slider_item_wrapper').css({
-					'transition':'all 0.25s ease-out 0s',
-					'height':'248px',
-					'top':`${(idx) * -37}px`});
-				idx += flag;
-			},2000);
-
-			$('.item_list .item').hover(function(){
-				$(this).find('.main').addClass('hover');
-				$(this).find('.overlay').addClass('hover');
-			}, function(){
-				$(this).find('.main').removeClass('hover');
-				$(this).find('.overlay').removeClass('hover');
-			});
-
-			$('.button.left').on('click', function(){
-				$(this).parents('.item_section').find('.item_list').attr('style','width: 830px; left: 0px;');
-			});
-
-			$('.button.right').on('click', function(){
-				$(this).parents('.item_section').find('.item_list').attr('style','width: 830px; left: -415px;');
-			});
-
-
-		});
-	</script>
  
 </html>

@@ -1,16 +1,16 @@
 let passWidth;
 
 $(document).ready(function(){
-    passWidth = $(window).width() < 413 ? -$(window).width() : -415;
-    if ($(window).width() <= 413) {
+    passWidth = $(window).width() < 416 ? -$(window).width() : -415;
+    if ($(window).width() <= 416) {
         const elements = $('.item_list .item');
             for(const e of elements) {
                 $(e).attr('style', `width: ${$(window).width() - 25}px`)
             }
     }
     $(window).resize(function() {
-        passWidth = $(window).width() < 413 ? -$(window).width() : -415;
-        if ($(window).width() <= 413) {
+        passWidth = $(window).width() < 416 ? -$(window).width() : -415;
+        if ($(window).width() <= 416) {
             const elements = $('.item_list .item');
             for(const e of elements) {
                 $(e).attr('style', `width: ${$(window).width() - 25}px`)

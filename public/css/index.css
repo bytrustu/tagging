@@ -693,4 +693,8 @@ footer {
     .right_comment {
         visibility: hidden;
     }
+
+    .item_list .title {
+        margin-top: 1rem;
+    }
 }

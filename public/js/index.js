@@ -1,14 +1,22 @@
 let passWidth;
 
 $(document).ready(function(){
-    passWidth = $(window).width() < 380 ? -350 : -415;
+    passWidth = $(window).width() < 413 ? -$(window).width() : -415;
+    if ($(window).width() <= 413) {
+        const elements = $('.item_list .item');
+            for(const e of elements) {
+                $(e).attr('style', `width: ${$(window).width() - 25}px`)
+            }
+    }
     $(window).resize(function() {
-        passWidth = $(window).width() < 380 ? -350 : -415;
+        passWidth = $(window).width() < 413 ? -$(window).width() : -415;
+        if ($(window).width() <= 413) {
+            const elements = $('.item_list .item');
+            for(const e of elements) {
+                $(e).attr('style', `width: ${$(window).width() - 25}px`)
+            }
+        }
     });
-     
-     
-
-
 
     let idx = 0;
     let flag = 1;
@@ -17,7 +25,6 @@ $(document).ready(function(){
         
         if (idx === max - 1) flag = -1;
         if (idx === 0) flag = 1;
-        console.log(flag);
         $('.slider_item_wrapper').css({
             'transition':'all 0.25s ease-out 0s',
             'height':'248px',
@@ -59,7 +66,7 @@ $(document).ready(function(){
 
 
 const changeItemListStyle = (element, direction) => {
-    const itemSize = passWidth === -350 ? $(element).find('.item').length : parseInt($(element).find('.item').length/4 + 1);
+    const itemSize = passWidth !== -415 ? $(element).find('.item').length : parseInt($(element).find('.item').length/4 + 1);
     let leftSize = $(element).css('left');
     leftSize = Number(leftSize.substring(0, leftSize.indexOf('px')));
     const maxSize = itemSize * -passWidth;

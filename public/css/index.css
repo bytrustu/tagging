@@ -180,6 +180,11 @@ template {
     display: none;
 }
 
+h1, h2, h3, h4, h5 {
+    font-family: '도현체';
+    font-weight: 400;
+}
+
 
 /* end reset css  */
 
@@ -527,6 +532,10 @@ header #logo {
     line-height: 1.36;
     letter-spacing: -0.14px;
     color: #515151;
+}
+
+.item h5.title {
+    font-size: 18px;
 }
 
 #lecture .item_list .item .content {

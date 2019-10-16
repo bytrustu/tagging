@@ -57,7 +57,6 @@ $(document).ready(function(){
     $(window).scroll(function () { 
         let current = $(document).scrollTop(); 
         scroll > current ? $('header').addClass('active') : $('header').removeClass('active');
-        console.log(scroll, current, scroll > current)
         scroll = current;
     });
 

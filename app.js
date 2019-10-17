@@ -44,7 +44,10 @@ app.all("*", function(req, res, next){
 });
 
 
-app.get('/', routes.index)
+app.get('/', routes.index);
+app.get('/tagging', routes.tagging);
+app.get('/category', routes.category);
+app.get('/statistics', routes.statistics);
 
 /*
 http.createServer(function (req, res) {

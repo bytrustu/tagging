@@ -15,39 +15,15 @@ exports.index = (req, res) => {
 	res.render('index');
 };
 
-exports.write_consulting = (req, res) => {
-	var Recaptcha = require('recaptcha-v2').Recaptcha;
-	var recaptcha = new Recaptcha(func.system.PUBLIC_KEY, func.system.PRIVATE_KEY);
-  	res.render('write_consulting', {recaptcha_form: recaptcha.toHTML()});
+exports.tagging = (req, res) => {
+	res.render('tagging');
 };
 
-exports.confirm_consulting = (req, res) => {
-	res.render('confirm_consulting');
+exports.category = (req, res) => {
+	res.render('category');
 };
 
-exports.info_consulting = (req, res) => {
-	res.render('info_consulting');
+exports.statistics = (req, res) => {
+	res.render('statistics');
 };
 
-exports.login = function(req, res){
-	var data = { user_id : null, user : null };
-	//send(res, 404, '<script>location.href="' + func.system.polcyber_domain + '"; </script>');
-	res.render('login', data);
-};
-
-exports.logout = function(req, res){
-	res.clearCookie('sid');
-	req.session.destroy(function(err) {
-		res.redirect("/");
-	});
-};
-
-exports.error = function(req, res){
-	var data = { user_id : null, user : null };
-	res.render('error', data);
-};
-
-exports.permission_deny = function(req, res){
-	var data = { user_id : null, user : null };
-	res.render('permission_deny', data);
-};

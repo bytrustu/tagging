@@ -56,6 +56,10 @@ $(document).ready(function(){
     let scroll = 0;
     $(window).scroll(function () { 
         let current = $(document).scrollTop(); 
+        if (current <= 0) {
+            $('header').addClass('active');
+            return;
+        }
         scroll > current ? $('header').addClass('active') : $('header').removeClass('active');
         scroll = current;
     });

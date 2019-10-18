@@ -88,12 +88,14 @@ const changeItemListStyle = (element, direction) => {
 
 const activeTagging = () => {
     const target = $('#tagging_detail');
-    target.css('height','936px');
     moveTargetSlide(target);
+    target.css('height','936px');
+    target.css('transition','all 1.5s ease-in-out');
     setTimeout(()=>{
         $('.btn_start').text('분석중');
         $('.btn_start').css('background-color', '#0a4623');
         $('#loading-text').text('분석중');
+        $('.tagging_url').prop('readonly', true);
         },500);
 }
 

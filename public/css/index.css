@@ -495,25 +495,26 @@ header #logo {
 #lecture .item_section .section_title {
     width: 100%;
     height: 38px;
-    padding: 5px 8px 5px 18px;
+    padding: 7px 8px 5px 18px;
     margin-top: 8px;
     background-color: #f1f2f5;
-    font-size: 18px;
+    font-size: 21px;
     line-height: 26px;
     letter-spacing: -0.19px;
     color: 000;
     text-align: left;
     border-radius: 4px;
+    font-family: 'overwatch';
 }
 
 #lecture .item_section .section_subtitle {
-    font-size: 16px;
+    font-size: 18px;
     text-align: left;
     line-height: 0.74;
     letter-spacing: -0.19px;
     margin: 16px 0 20px 14px;
     color: #9ba0aa;
-    font-weight: 300;
+    font-family: 'overwatch';
 }
 
 #lecture .item_list {
@@ -549,6 +550,7 @@ header #logo {
     background-color: white;
     text-align: left;
     overflow: hidden;
+    border: 1px solid #f7f7f7;
 }
 
 #lecture .item_list .item .main {
@@ -588,11 +590,12 @@ header #logo {
     display: block;
     min-height: 33px;
     margin: 10.5px 15px 0 14px;
-    font-size: 14px;
+    font-size: 17px;
     font-weight: normal;
     line-height: 1.36;
     letter-spacing: -0.14px;
     color: #515151;
+    font-family: 'overwatch';
 }
 
 .item h5.title {
@@ -609,6 +612,7 @@ header #logo {
     text-align: left;
     color: #515151;
     overflow: hidden;
+    font-family: 'overwatch';
 }
 
 #lecture .item_list .item .progress {
@@ -632,10 +636,11 @@ header #logo {
 #lecture .item_list .item .finish_date {
     float: right;
     margin: 4px 12px;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.33;
     letter-spacing: -0.12px;
     color: #818181;
+    font-family: 'overwatch';
 }
 
 
@@ -659,14 +664,15 @@ header #logo {
     border-radius: 90px;
     border: solid 1px #ffffff;
     background-color: #00290d;
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 500;
     line-height: 38px;
     letter-spacing: -0.26px;
     color: white;
     text-align: center;
     cursor: pointer;
-    margin-top: 28px;
+    margin-top: 45px;
+    font-family: 'overwatch';
 }
 
 #lecture .item_list .item .overlay.hover {
@@ -684,7 +690,7 @@ header #logo {
 
 #lecture .item_list .item .image {
     float: left;
-    width: 200px;
+    width: 198px;
     height: 100%;
     object-fit: cover;
     object-position: left center;
@@ -695,6 +701,7 @@ header #logo {
     display: inline-block;
     vertical-align: middle;
     line-height: 1.67;
+    font-family: 'overwatch';
 }
 
 #lecture .item_list .item .overlay .column {
@@ -1268,5 +1275,4 @@ footer {
     #lecture .item_list .item .column {
         width: calc(100% - 134px);
     }
-
 }

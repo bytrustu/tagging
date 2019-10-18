@@ -35,11 +35,6 @@ app.all("*", function(req, res, next){
 	res.header("Cache-Control", "no-cache, no-store, must-revalidate");
 	res.header("Pragma", "no-cache");
 	res.header("Expires", 0);
-	if (!req.session) {
-		req.session = {};
-		req.session.user_id = null;
-		req.session.user = {};
-	}
 	next();
 });
 

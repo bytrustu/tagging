@@ -200,6 +200,11 @@ h5 {
     src: url('../fonts/BMDOHYEON_ttf.ttf');
 }
 
+@font-face {
+    font-family: 'overwatch';
+    src: url('../fonts/koverwatch.ttf');
+}
+
 /* @font-face { 
     font-family: '배달의민족 한나체 Pro';
     font-style: normal;

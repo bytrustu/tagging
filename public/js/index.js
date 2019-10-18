@@ -85,3 +85,19 @@ const changeItemListStyle = (element, direction) => {
 
     $(element).attr('style', `width: ${maxSize}px; left: ${direction === 'left' ?  leftSize - passWidth : leftSize + passWidth}px`);
 }
+
+const activeTagging = () => {
+    const target = $('#tagging_detail');
+    target.css('height','936px');
+    moveTargetSlide(target);
+    setTimeout(()=>{
+        $('.btn_start').text('분석중');
+        $('.btn_start').css('background-color', '#0a4623');
+        $('#loading-text').text('분석중');
+        },500);
+}
+
+const moveTargetSlide = (target) => {
+    const targetOffset = $(target).offset();
+    $('html, body').animate({scrollTop : targetOffset.top}, 1000);
+}

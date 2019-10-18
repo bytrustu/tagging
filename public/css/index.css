@@ -457,16 +457,16 @@ header #logo {
     transition: all 0.3s ease-in;
 }
 
-#items .item_list .item .button:nth-of-type(1):hover{
-    color: #4d90a7;   
+#items .item_list .item .button:nth-of-type(1):hover {
+    color: #4d90a7;
 }
 
-#items .item_list .item .button:nth-of-type(2):hover{
-    color: #5978b7;   
+#items .item_list .item .button:nth-of-type(2):hover {
+    color: #5978b7;
 }
 
-#items .item_list .item .button:nth-of-type(3):hover{
-    color: #19833a;   
+#items .item_list .item .button:nth-of-type(3):hover {
+    color: #19833a;
 }
 
 
@@ -649,7 +649,7 @@ header #logo {
     width: 100%;
     height: 100%;
     border-radius: 5.1px;
-    background-color: rgba(11, 134, 49, 0.8);
+    background-color: rgba(11, 134, 49, 0.67);
     opacity: 0;
     z-index: 2;
     -webkit-transition: opacity 250ms linear;
@@ -663,16 +663,25 @@ header #logo {
     height: 37.4px;
     border-radius: 90px;
     border: solid 1px #ffffff;
-    background-color: #00290d;
+    background-color: #19833a;
     font-size: 18px;
     font-weight: 500;
     line-height: 38px;
     letter-spacing: -0.26px;
-    color: white;
+    color: #ffffff;
     text-align: center;
     cursor: pointer;
-    margin-top: 45px;
+    margin-top: 20px;
     font-family: 'overwatch';
+}
+
+#lecture .item_list .item .overlay .button:hover{
+    background-color: #ffffff;
+    color: #19833a;
+    -moz-transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
 }
 
 #lecture .item_list .item .overlay.hover {
@@ -1136,7 +1145,7 @@ footer {
 
 
 @media screen and (max-width: 680px) {
-    header #logo{
+    header #logo {
         width: 150px;
     }
 
@@ -1223,7 +1232,7 @@ footer {
     #headline .logo {
         display: none;
     }
-    
+
     .item_list h5.title {
         margin-top: 13px;
     }

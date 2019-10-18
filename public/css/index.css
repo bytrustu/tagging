@@ -1114,9 +1114,10 @@ footer {
 
 @media screen and (max-width: 1300px) {
     .input_warp .btn_start {
-        right: calc(50% - 77px);
         bottom: -7.5px;
         position: absolute;
+        right: 50%;
+        transform: translateX(50%);
     }
 
     .comment_warp {
@@ -1170,10 +1171,12 @@ footer {
 
     .comment_warp {
         left: 0;
+        width: 100%;
+        text-align: center;
     }
 
     .comment_warp span {
-        font-size: 20px;
+        font-size: 1.05rem;
     }
 
     #headline .left_comment {

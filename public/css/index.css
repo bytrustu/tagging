@@ -347,13 +347,11 @@ header #logo {
 #headline .left {
     left: calc(50% - 140px);
     top: 130px;
-    visibility: visible;
 }
 
 #headline .right {
     left: calc(50% - -125px);
     top: 130px;
-    visibility: visible;
 }
 
 #headline .left_comment {
@@ -1113,14 +1111,6 @@ footer {
         padding: 18.3px 18px 13.1px;
     }
 
-    .left_comment {
-        visibility: hidden;
-    }
-
-    .right_comment {
-        visibility: hidden;
-    }
-
     .tagging_warp {
         height: 253px;
     }
@@ -1144,6 +1134,44 @@ footer {
 
     .comment_warp span {
         font-size: 11px;
+    }
+
+    #headline .left_comment {
+        top: 268px;
+        left: 50%;
+        transform: translateX(-153%);
+        font-weight: 100;
+        font-size: 24px;
+    }
+
+    #headline .right_comment {
+        top: 380px;
+        left: 50%;
+        transform: translateX(-7%);
+        font-weight: 100;
+        font-size: 24px;
+    }
+
+    #headline .left {
+        left: calc(50% - 140px);
+        top: 325px;
+    }
+
+    #headline .right {
+        left: calc(50% - -125px);
+        top: 325px;
+    }
+
+    #headline .bottom {
+        top: 157px;
+    }
+
+    #headline #wording_slider {
+        top: 265px;
+    }
+
+    #headline .logo {
+        display: none;
     }
 }
 
@@ -1193,7 +1221,5 @@ footer {
     #lecture .item_list .item .column {
         width: calc(100% - 134px);
     }
-
-
 
 }

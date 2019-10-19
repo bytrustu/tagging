@@ -889,10 +889,18 @@ footer {
 }
 
 #tagging_detail .detail_simple .left {
-    
+    position: relative;
+    cursor: pointer;
 }
 
-#tagging_detail .detail_simple .left img {
+#tagging_detail .detail_simple .left img.ico_youtube {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 68px;
+}
+
+#tagging_detail .detail_simple .left img.img_youtube {
     width: 400px;
     height: 200px;
     border-radius: 5px;

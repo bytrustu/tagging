@@ -64,6 +64,11 @@ $(document).ready(function(){
         scroll = current;
     });
 
+    $(document).on('click', '.detail_simple .left', function(){
+        window.open($('.detail_simple .left').attr('data-link'));
+    });
+    
+
     
 });
 
@@ -114,8 +119,9 @@ const activeTagging = () => {
 
     setTimeout(()=>{
         const simple = `<div class="detail_simple">
-                            <div class="left animated fadeIn d-none">
-                                <img src="/images/tagging/cogi.png">
+                            <div class="left animated fadeIn d-none" data-link="https://www.youtube.com/watch?v=UknkihjVwWw">
+                                <img class="ico_youtube" src="/images/tagging/youtube.png">
+                                <img class="img_youtube" src="/images/tagging/cogi.png">
                             </div>
                             <div class="right animated fadeIn d-none">
                                 <p>아리가 코기 천국에 상륙했습니다. ㅣ 8마리 웰시코기와 끝내주는 여름나기</p>

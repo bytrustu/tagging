@@ -250,6 +250,10 @@ input[type="text"]:disabled {
     color: #ffffff;
 }
 
+.d-none {
+    display: none !important;
+}
+
 
 /* header */
 
@@ -849,6 +853,69 @@ footer {
     height: 356px;
 }
 
+#tagging_detail .detail_timer {
+    text-align: center;
+}
+
+#tagging_detail .detail_timer p {
+    color: #ffffff;
+}
+
+#tagging_detail .detail_timer p:nth-of-type(1) {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+#tagging_detail .detail_timer p:nth-of-type(2) {
+    font-size: 22px;
+    font-family: 'overwatch';
+}
+
+#tagging_detail .detail_simple {
+    margin-top: 100px;
+    text-align: center;
+    background-color: #ffffff;
+    
+    width: 1458px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0px;
+}
+
+#tagging_detail .detail_simple > div {
+    display: inline-block;
+    
+}
+
+#tagging_detail .detail_simple .left {
+    
+}
+
+#tagging_detail .detail_simple .left img {
+    width: 400px;
+    height: 200px;
+    border-radius: 5px;
+}
+
+#tagging_detail .detail_simple .right {
+    width: 600px;
+    height: auto;
+    min-height: 200px;
+    border-radius: 5px;
+    background-color: #096931;
+    vertical-align: top;
+    margin-left: 50px;
+    text-align: left;
+    padding: 30px 50px;
+}
+
+#tagging_detail .detail_simple .right p {
+    color: #ffffff;
+    font-family: 'overwatch';
+    font-size: 16px;
+    letter-spacing: 1.5px;
+}
 
 
 
@@ -1080,7 +1147,7 @@ footer {
 
 
 .loading-container {
-    margin: 90px auto;
+    margin: 90px auto 50px;
 }
 
 .loading {

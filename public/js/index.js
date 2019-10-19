@@ -97,9 +97,56 @@ const activeTagging = () => {
         $('#loading-text').text('분석중');
         $('.tagging_url').prop('readonly', true);
         },500);
+    
+    setTimeout(()=>{
+        const timer = `<div class="detail_timer animated fadeIn">
+                        <p id="detail_time" data-time="0">00:00</p>
+                        <p>해당 링크분석 완료까지 약간의 시간이 소요됩니다.</p>
+                    </div>`;
+        $('#tagging_detail > .container').append(timer);
+        setInterval(()=>{
+            const timerElement = $('#detail_time');
+            const sec = parseInt(timerElement.attr('data-time'));
+            timerElement.attr('data-time',sec+1);
+            timerElement.text(drawTime(sec));
+        },1000)
+    },1800);
+
+    setTimeout(()=>{
+        const simple = `<div class="detail_simple">
+                            <div class="left animated fadeIn d-none">
+                                <img src="/images/tagging/cogi.png">
+                            </div>
+                            <div class="right animated fadeIn d-none">
+                                <p>아리가 코기 천국에 상륙했습니다. ㅣ 8마리 웰시코기와 끝내주는 여름나기</p>
+                                <p>조회수 759,319회•2019. 6. 5.</p>
+                                <p>아리둥절 Ari the Corgi</p>
+                                <p>얼마전 8코기네에 소풍다녀왔어요~ :)</p>
+                            </div>
+                        </div>`;
+        $('#tagging_detail > .container').append(simple);
+        const simpleElement = $('.detail_simple');
+        setTimeout(()=>{
+            simpleElement.css('height','460px');
+            simpleElement.css('transition','all 2s ease-in-out');
+        },2000)
+        setTimeout(()=>{
+            simpleElement.css('padding','121px');
+            $('.detail_simple .left').removeClass('d-none');
+            $('.detail_simple .right').removeClass('d-none');
+        },4000);
+    }, 2500);
 }
 
 const moveTargetSlide = (target) => {
     const targetOffset = $(target).offset();
     $('html, body').animate({scrollTop : targetOffset.top}, 1000);
+}
+
+const drawTime = (second) => {
+    if (typeof second === "string") second = parseInt(second);
+    const min = parseInt(second / 60);
+    const sec = second % 60;
+    const calcStr = (n) => n < 10 ? `0${n}` : `${n}`;
+    return `${calcStr(min)}:${calcStr(sec)}`;
 }

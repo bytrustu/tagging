@@ -1,4 +1,5 @@
 let passWidth;
+let timerInterval;
 
 $(document).ready(function(){
     passWidth = $(window).width() < 416 ? -$(window).width() : -415;
@@ -20,17 +21,16 @@ $(document).ready(function(){
 
     let idx = 0;
     let flag = 1;
-    setInterval(()=>{
-        const max = $('.slider_item_wrapper .item').length;
-        
-        if (idx === max - 1) flag = -1;
-        if (idx === 0) flag = 1;
-        $('.slider_item_wrapper').css({
-            'transition':'all 0.25s ease-out 0s',
-            'height':'248px',
-            'top':`${(idx) * -37}px`});
-        idx += flag;
-    },2000);
+    const max = $('.slider_item_wrapper .item').length;
+    
+    if (idx === max - 1) flag = -1;
+    if (idx === 0) flag = 1;
+    $('.slider_item_wrapper').css({
+        'transition':'all 0.25s ease-out 0s',
+        'height':'248px',
+        'top':`${(idx) * -37}px`
+    });
+    idx += flag;
 
 
     $('.item_list .item').hover(function(){
@@ -68,8 +68,6 @@ $(document).ready(function(){
         window.open($('.detail_simple .left').attr('data-link'));
     });
     
-
-    
 });
 
 
@@ -93,6 +91,11 @@ const changeItemListStyle = (element, direction) => {
 
 const activeTagging = () => {
     const target = $('#tagging_detail');
+    showTimer(target);
+    showSimple();
+}
+
+const showTimer = (target) => {
     moveTargetSlide(target);
     target.css('height','936px');
     target.css('transition','all 1.5s ease-in-out');
@@ -108,19 +111,28 @@ const activeTagging = () => {
                         <p id="detail_time" data-time="0">00:00</p>
                         <p>해당 링크분석 완료까지 약간의 시간이 소요됩니다.</p>
                     </div>`;
-        $('#tagging_detail > .container').append(timer);
-        setInterval(()=>{
+        $('#tagging_detail .container').append(timer);
+        timerInterval = setInterval(()=>{
             const timerElement = $('#detail_time');
             const sec = parseInt(timerElement.attr('data-time'));
             timerElement.attr('data-time',sec+1);
             timerElement.text(drawTime(sec));
-        },1000)
-    },1800);
 
+            if (sec === 10) {
+                timerOut();
+            }
+        },1000);
+    },1800);
+}
+
+const showSimple = () => {
     setTimeout(()=>{
+        if ($(window).width() <= 416) {
+            $('.detail_simple ')
+        }
         const simple = `<div class="detail_simple">
                             <div class="left animated fadeIn d-none" data-link="https://www.youtube.com/watch?v=UknkihjVwWw">
-                                <img class="ico_youtube" src="/images/tagging/youtube.png">
+                                <img class="ico_youtube" src="/images/tagging/youtube_1.png">
                                 <img class="img_youtube" src="/images/tagging/cogi.png">
                             </div>
                             <div class="right animated fadeIn d-none">
@@ -130,17 +142,32 @@ const activeTagging = () => {
                                 <p>얼마전 8코기네에 소풍다녀왔어요~ :)</p>
                             </div>
                         </div>`;
-        $('#tagging_detail > .container').append(simple);
+        $('#tagging_detail .container').append(simple);
         const simpleElement = $('.detail_simple');
         setTimeout(()=>{
             simpleElement.css('height','460px');
             simpleElement.css('transition','all 2s ease-in-out');
         },2000)
         setTimeout(()=>{
+            if ($(window).width() <= 416) {
+                simpleElement.addClass('mobile');
+            }
             simpleElement.css('padding','121px');
             $('.detail_simple .left').removeClass('d-none');
             $('.detail_simple .right').removeClass('d-none');
         },4000);
+
+        setTimeout(()=>{
+            $('.detail_timer').append(`
+                <p class="animated fadeIn">잠시만 기다려주세요 !</p>
+                <p class="animated fadeIn">분석이 완료되면 자동으로 표시 됩니다. 😊</p>`)
+        },5000);
+
+        $('.detail_simple .left').hover(function(){
+            $(this).find('.ico_youtube').attr('src','/images/tagging/youtube_2.png')
+        },function(){
+            $(this).find('.ico_youtube').attr('src','/images/tagging/youtube_1.png')
+        });
     }, 2500);
 }
 
@@ -155,4 +182,33 @@ const drawTime = (second) => {
     const sec = second % 60;
     const calcStr = (n) => n < 10 ? `0${n}` : `${n}`;
     return `${calcStr(min)}:${calcStr(sec)}`;
+}
+
+const timerOut = () => {
+    clearInterval(timerInterval);
+    $('#loading-text').text('분석완료');
+    let outInterval;
+    let idx = 0;
+    outInterval = setInterval(()=>{
+        const timerElement = $('#detail_time');
+        if (idx >= 7) clearInterval(outInterval);
+        timerElement.css('color','#ff4444');
+        idx % 2 === 0 ? timerElement.css('visibility', 'hidden') : timerElement.css('visibility', 'visible');
+        console.log(idx, idx % 2);
+        idx++;
+    },300);
+
+    setTimeout(()=>{
+        const subElement = $('#tagging_detail > .sub');
+        subElement.removeClass('d-none');
+        setTimeout(()=>{
+            subElement.css('height','1000px');
+            subElement.css('transition','all 4s ease-in-out');
+        },500);
+        setTimeout(()=>{
+            subElement.css('background-color', '#0a4623');
+            subElement.css('transition','all 1s ease-in-out');
+        },2500)
+        
+    },2000)
 }

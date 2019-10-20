@@ -21,16 +21,18 @@ $(document).ready(function(){
 
     let idx = 0;
     let flag = 1;
-    const max = $('.slider_item_wrapper .item').length;
-    
-    if (idx === max - 1) flag = -1;
-    if (idx === 0) flag = 1;
-    $('.slider_item_wrapper').css({
-        'transition':'all 0.25s ease-out 0s',
-        'height':'248px',
-        'top':`${(idx) * -37}px`
-    });
-    idx += flag;
+    setInterval(()=>{
+        const max = $('.slider_item_wrapper .item').length;
+        
+        if (idx === max - 1) flag = -1;
+        if (idx === 0) flag = 1;
+        $('.slider_item_wrapper').css({
+            'transition':'all 0.25s ease-out 0s',
+            'height':'248px',
+            'top':`${(idx) * -37}px`
+        });
+        idx += flag;
+    },2000);
 
 
     $('.item_list .item').hover(function(){

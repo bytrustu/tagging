@@ -205,14 +205,6 @@ h5 {
     src: url('../fonts/koverwatch.ttf');
 }
 
-/* @font-face { 
-    font-family: '배달의민족 한나체 Pro';
-    font-style: normal;
-    src:url(/font/BMHANNAPro.woff) format('woff'), 
-    url(/font/BMHANNAPro.ttf) format('truetype'); 
-    src:local(※), url(/font/BMHANNAPro.woff) format('woff'); 
-} */
-
 
 /* #common  */
 
@@ -950,6 +942,29 @@ footer {
     z-index: 10;
 }
 
+
+
+
+.container.category .tagging_warp {
+    padding-top: 85px;
+    height: 330px;
+}
+
+.container.category .tagging_warp > img {
+    width: 300px;
+}
+
+.container.category .input_warp {
+    padding-top: 60px;
+    background-color: #096931;
+}
+
+.container.category .input_warp > .category_btn {
+    width: 200px;
+    height: 80px;
+    background-color: #ffffff;
+    display: inline-block;
+}
 
 
 

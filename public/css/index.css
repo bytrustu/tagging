@@ -294,7 +294,9 @@ header #logo {
 }
 
 #headline {
-    height: 580px;
+    min-height: 580px;
+    overflow: hidden;
+    height: auto;
 }
 
 .container {
@@ -778,7 +780,7 @@ footer {
 }
 
 .input_warp {
-    padding: 0 300px 0;
+    padding: 0 256px 0;
     height: 130px;
 }
 
@@ -960,10 +962,236 @@ footer {
 }
 
 .container.category .input_warp > .category_btn {
-    width: 200px;
+    width: 150px;
     height: 80px;
-    background-color: #ffffff;
+    background-color: #0a4623;
     display: inline-block;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+    float: left;
+}
+
+.container.category .input_warp > .category_btn + .category_btn {
+    border-left: 1px solid #096931;
+}
+
+.container.category .input_warp > .category_btn > span {
+    position: absolute;
+    top: 32px;
+    font-size: 30px;
+    color: #ffffff;
+    font-family: 'overwatch';
+    min-width: 100%;
+    text-align: center;
+}
+
+.container.category .input_warp > .category_btn.active {
+    background-color: #ffffff;
+}
+
+.container.category .input_warp > .category_btn.active > span {
+    color: #0a4623;
+}
+
+
+
+
+
+
+.main_warp {
+    padding: 80px;
+    min-height: 357px;
+    height: 100%;
+    overflow:hidden;
+	height:auto;
+}
+
+.main_warp .item_warp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_warp .item_warp + .item_warp {
+    margin-top: 20px;
+}
+
+.main_warp .item {
+    position: relative;
+    min-width: 390px;
+    height: 135.3px;
+    margin: 0 25px 11px 0;
+    float: left;
+    border-radius: 5.1px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23);
+    background-color: white;
+    text-align: left;
+    overflow: hidden;
+    border: 1px solid #f7f7f7;
+}
+
+.main_warp .item .main {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: -webkit-transform 250ms linear;
+    -moz-transition: -moz-transform 250ms linear;
+    -o-transition: -o-transform 250ms linear;
+    transition: transform 250ms linear;
+}
+
+.main_warp  .image {
+    float: left;
+    width: 198px;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+    border-radius: 5.1px 0 0 5.1px;
+}
+
+.main_warp .item .column {
+    width: 190px;
+    height: 100%;
+    float: left;
+}
+
+.main_warp .item .title {
+    display: block;
+    min-height: 33px;
+    margin: 10.5px 15px 0 14px;
+    font-size: 17px;
+    font-weight: normal;
+    line-height: 1.36;
+    letter-spacing: -0.14px;
+    color: #515151;
+    font-family: 'overwatch';
+}
+
+.main_warp .item .content {
+    display: block;
+    height: 42px;
+    margin: 9px 14px;
+    font-size: 13px;
+    line-height: 1.62;
+    letter-spacing: -0.13px;
+    text-align: left;
+    color: #515151;
+    overflow: hidden;
+    font-family: 'overwatch';
+}
+
+.main_warp .item .progress {
+    width: 100%;
+    height: 4.7px;
+    background-color: #e0e0e0;
+}
+
+.main_warp .item .progress .charging {
+    width: 100%;
+    height: 4.7px;
+    background-color: #19833a;
+}
+
+.main_warp .item .finish_date {
+    float: right;
+    margin: 4px 12px;
+    font-size: 14px;
+    line-height: 1.33;
+    letter-spacing: -0.12px;
+    color: #818181;
+    font-family: 'overwatch';
+}
+
+.main_warp .item .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 5.1px;
+    background-color: rgba(11, 134, 49, 0.67);
+    opacity: 0;
+    z-index: 2;
+    -webkit-transition: opacity 250ms linear;
+    -moz-transition: opacity 250ms linear;
+    -o-transition: opacity 250ms linear;
+    transition: opacity 250ms linear;
+}
+
+.main_warp .item .overlay .image {
+    padding: 0 18.5px;
+    font-size: 18px;
+    line-height: 125px;
+    letter-spacing: -0.18px;
+    color: white;
+    word-break: keep-all;
+}
+
+.main_warp .item .image {
+    float: left;
+    width: 198px;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+    border-radius: 5.1px 0 0 5.1px;
+}
+
+.main_warp .item .overlay .image {
+    padding: 0 18.5px;
+    font-size: 18px;
+    line-height: 125px;
+    letter-spacing: -0.18px;
+    color: white;
+    word-break: keep-all;
+}
+
+.main_warp .item .overlay .column {
+    padding: 24px;
+}
+
+.main_warp .item .column {
+    width: 190px;
+    height: 100%;
+    float: left;
+}
+
+.main_warp .item .overlay .button {
+    width: 145.4px;
+    height: 37.4px;
+    border-radius: 90px;
+    border: solid 1px #ffffff;
+    background-color: #19833a;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 38px;
+    letter-spacing: -0.26px;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 20px;
+    font-family: 'overwatch';
+}
+
+
+.main_warp .item .main.hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.main_warp .item .overlay .button:hover{
+    background-color: #ffffff;
+    color: #19833a;
+    -moz-transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+}
+
+.main_warp .item .overlay.hover {
+    opacity: 1;
 }
 
 

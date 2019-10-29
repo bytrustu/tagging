@@ -994,24 +994,12 @@ footer {
     color: #0a4623;
 }
 
-
-
-
-
-
 .main_warp {
     padding: 80px;
     min-height: 357px;
     height: 100%;
     overflow:hidden;
 	height:auto;
-}
-
-.main_warp .item_warp {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
 }
 
 .main_warp .item_warp + .item_warp {
@@ -1468,6 +1456,80 @@ footer {
     width: 100px;
     font-family: 'overwatch';
 }
+
+
+
+
+
+
+
+
+#headline.detail {
+    min-height: 937px;
+    padding: 100px 150px;
+    font-family: 'overwatch';
+}
+
+#headline.detail .container > div {
+    display: inline-block;
+}
+
+#headline.detail .container .left_detail {
+    width: 49%;
+    background-color: red;
+    padding-top: 50px;
+}
+
+
+#headline.detail .container .left_detail .detail_tag > span  {
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: #ffffff;
+}
+
+#headline.detail .container .left_detail .detail_content {
+    margin-top: 10px;
+}
+
+#headline.detail .container .left_detail .detail_content.margin-top {
+    margin-top: 30px !important;
+}
+
+#headline.detail .container .left_detail .detail_content > p {
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: 200;
+    letter-spacing: 3px;
+    color: #ffffff;
+}
+
+#headline.detail .container .left_detail .detail_content > span {
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: 3px;
+    color: #ffffff;
+}
+
+#headline.detail .container .left_detail .detail_content.title > span {
+    font-size: 20px;
+    line-height: 32px;
+
+}
+
+
+
+
+
+#headline.detail .container .right_detail {
+    width: 49%;
+    background-color: blue;
+}
+
+
+
+
+
 
 @media screen and (max-width: 1300px) {
     .input_warp .btn_start {

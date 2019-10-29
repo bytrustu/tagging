@@ -23,6 +23,10 @@ exports.category = (req, res) => {
 	res.render('category');
 };
 
+exports.detail = (req, res) => {
+	res.render('detail');
+};
+
 exports.statistics = (req, res) => {
 	res.render('statistics');
 };

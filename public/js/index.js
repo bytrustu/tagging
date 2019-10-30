@@ -35,7 +35,7 @@ $(document).ready(function(){
     },2000);
 
 
-    $('.item_list .item').hover(function(){
+    $('.item').hover(function(){
         $(this).find('.main').addClass('hover');
         $(this).find('.overlay').addClass('hover');
     }, function(){
@@ -46,13 +46,21 @@ $(document).ready(function(){
 
     $('.button.left').on('click', function(){
         changeItemListStyle($(this).parents('.item_section').find('.item_list'), 'left');
-        // $(this).parents('.item_section').find('.item_list').attr('style','width: 830px; left: 0px;');
     });
 
 
     $('.button.right').on('click', function(){
         changeItemListStyle($(this).parents('.item_section').find('.item_list'), 'right');
-        // $(this).parents('.item_section').find('.item_list').attr('style','width: 830px; left: -415px;');
+    });
+
+    $('.category_btn').on('click', function(){
+        if ($(this).hasClass('active')) return;
+        const categoryElements = $('.category_btn');
+        for (const element of categoryElements) {
+            const isActvie = $(element).hasClass('active');
+            if (isActvie) $(element).removeClass('active');
+        }
+        $(this).addClass('active');
     });
 
     let scroll = 0;

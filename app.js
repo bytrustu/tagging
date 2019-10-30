@@ -43,6 +43,7 @@ app.get('/', routes.index);
 app.get('/tagging', routes.tagging);
 app.get('/category', routes.category);
 app.get('/statistics', routes.statistics);
+app.get('/category/detail/:no', routes.detail);
 
 app.get('/test', restful.test);
 

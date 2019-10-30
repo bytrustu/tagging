@@ -8,3 +8,14 @@ const crypto				= require('crypto');
 const iconv = require("iconv-lite");
 const func				= require("./../custom_module/func.js");
 const db_ 					= require("./../custom_module/db_query.js");
+const request = require('request');
+
+function send(res, code, data) {
+	if (!data) data = {};
+	res.statusCode = code;
+	res.send(data);
+}
+
+module.exports.test = function(req, res){
+	
+};

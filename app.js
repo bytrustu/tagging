@@ -44,6 +44,8 @@ app.get('/tagging', routes.tagging);
 app.get('/category', routes.category);
 app.get('/statistics', routes.statistics);
 
+app.get('/test', restful.test);
+
 /*
 http.createServer(function (req, res) {
     res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });

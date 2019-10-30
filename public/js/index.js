@@ -222,3 +222,141 @@ const timerOut = () => {
         
     },2000)
 }
+
+const createWordCloud = () => {
+    var width = 700,
+    height = 354
+
+    var svg = d3.select(".word_cloud").append("svg")
+        .attr("width", width)
+        .attr("height", height);
+    d3.csv("/csv/worddata.csv", function (data) {
+        showCloud(data)
+        setInterval(function(){
+            showCloud(data)
+        },5000) 
+    });
+    wordScale = d3.scale.linear().domain([0, 100]).range([0, 150]).clamp(true);
+    var keywords = ["자리야", "트레이서", "한조", "라인하르트"]
+    var svg = d3.select("svg")
+                .append("g")
+                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+
+    function showCloud(data) {
+        d3.layout.cloud().size([width, height])
+            .words(data)
+            .rotate(function (d) {
+                return d.text.length > 3 ? 0 : 90;
+            })
+            .fontSize(function (d) {
+                return wordScale(d.frequency);
+            })
+            .on("end", draw)
+            .start();
+
+        function draw(words) { 
+            var cloud = svg.selectAll("text").data(words)
+            //Entering words
+            cloud.enter()
+                .append("text")
+                .style("font-family", "overwatch")
+                .style("fill", function (d) {
+                    return (keywords.indexOf(d.text) > -1 ? "#ffffff" : "#e69999");
+                })
+                .style("fill-opacity", .5)
+                .attr("text-anchor", "middle") 
+                .attr('font-size', 1)
+                .text(function (d) {
+                    return d.text;
+                }); 
+            cloud
+                .transition()
+                .duration(600)
+                .style("font-size", function (d) {
+                    return d.size + "px";
+                })
+                .attr("transform", function (d) {
+                    return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                })
+                .style("fill-opacity", 1); 
+        }
+    }
+}
+
+
+const createKeywordChart = () => {
+    
+    var container = document.getElementById('chart-area');
+    var data = {
+        categories: ['Browser'],
+        series: [
+            {
+                name: 'Chrome',
+                data: 46.02
+            },
+            {
+                name: 'IE',
+                data: 20.47
+            },
+            {
+                name: 'Firefox',
+                data: 17.71
+            },
+            {
+                name: 'Safari',
+                data: 5.45
+            },
+            {
+                name: 'Opera',
+                data: 3.10
+            },
+            {
+                name: 'Etc',
+                data: 7.25
+            }
+        ]
+    };
+    var options = {
+        chart: {
+            width: 680,
+            height: 250
+            
+        },
+        chartExportMenu: {
+            visible: false,
+        },
+        tooltip: {
+            suffix: '%'
+        },
+        series: {
+            startAngle: -90,
+            endAngle: 90,
+            radiusRange: ['60%', '100%'],
+        }
+    };
+    var theme = {
+        chart : {
+            background : 'transparent'
+        },
+        series: {
+            label: {
+	            color: '#fff',
+	            fontFamily: 'sans-serif'
+	        },
+            backgroundColor : '#0a4623'
+        },
+        legend: {
+            label: {
+              color: '#ffffff'
+            }
+          }
+    };
+
+    // For apply theme
+
+    tui.chart.registerTheme('myTheme', theme);
+    options.theme = 'myTheme';
+
+    tui.chart.pieChart(container, data, options);
+
+}

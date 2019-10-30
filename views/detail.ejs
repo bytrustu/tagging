@@ -7,25 +7,54 @@
 
 		<section id="headline" class="section bg-green detail">
 			<div class="container position-relative">
-				<div class="left_detail">
-                    <div class="detail_tag">
-                        <span>#애완동물</span>
+				<div class="detail_top">
+                    <div class="detail_left">
+                        
                     </div>
-                    <div class="detail_content title margin-top">
-                        <span>웰시코기 알고 키우자! 예비 웰시코기 반려자들에게 말한다</span>
-                    </div>
-                    <div class="detail_content text">
-                        <span>웰시코기 알고 키우자! 예비 웰시코기 반려자들에게 말한다</span>
+                    <div class="detail_right">
+
                     </div>
                 </div>
-                <div class="right_detail">
-                    ddd
+
+
+                <div class="detail_bottom">
+                    <div class="detail_left">
+                        <div class="detail_content">
+                            <div class="detail_keyword">
+                                <h3>🔑 주요 키워드</h1>
+                                <div class="keyword_warp">
+                                    <span># 게임</span>
+                                    <span># 오버워치</span>
+                                    <span># 블리자드</span>
+                                    <span># 즐겜</span>
+                                    <span># 트레이서</span>
+                                    <span># 라인하르트</span>
+                                </div>
+                            </div>
+                            <div id="chart-area"></div>
+                        </div>
+                    </div>
+                    <div class="detail_right">
+                        <div class="word_cloud">
+                        </div>
+                    </div>
                 </div>
+
+                
+            
 			</div>
-		</section>
+        </section>
+        
 
 		<%- partial('layout/layout_footer.ejs') %>
-	</body>
-	<%- partial('layout/layout_script.ejs') %>
+    </body>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
+    <%- partial('layout/layout_script.ejs') %>
+    <script>
+        createWordCloud();
+        createKeywordChart();
+    </script>
+    
  
 </html>

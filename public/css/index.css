@@ -467,12 +467,12 @@ header #logo {
 
 
 
-#lecture {
+#analysis {
     background-color: white;
     padding: 55px 0 118px;
 }
 
-#lecture .section_list {
+#analysis .section_list {
     /* height: 550px; */
     display: block;
     text-align: center;
@@ -480,7 +480,7 @@ header #logo {
 }
 
 
-#lecture .item_section {
+#analysis .item_section {
     width: 415px;
     float: auto;
     padding: 0 12.5px;
@@ -488,7 +488,7 @@ header #logo {
     display: inline-block;
 }
 
-#lecture .item_section .section_title {
+#analysis .item_section .section_title {
     width: 100%;
     height: 38px;
     padding: 7px 8px 5px 18px;
@@ -503,7 +503,7 @@ header #logo {
     font-family: 'overwatch';
 }
 
-#lecture .item_section .section_subtitle {
+#analysis .item_section .section_subtitle {
     font-size: 18px;
     text-align: left;
     line-height: 0.74;
@@ -513,7 +513,7 @@ header #logo {
     font-family: 'overwatch';
 }
 
-#lecture .item_list {
+#analysis .item_list {
     position: relative;
     width: 400px;
     height: 439px;
@@ -535,7 +535,7 @@ header #logo {
     transition: left 250ms cubic-bezier(.25, .45, .45, .95);
 }
 
-#lecture .item_list .item {
+#analysis .item_list .item {
     position: relative;
     width: 390px;
     height: 135.3px;
@@ -549,7 +549,7 @@ header #logo {
     border: 1px solid #f7f7f7;
 }
 
-#lecture .item_list .item .main {
+#analysis .item_list .item .main {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -559,7 +559,7 @@ header #logo {
     transition: transform 250ms linear;
 }
 
-#lecture .item_list .item .main.hover {
+#analysis .item_list .item .main.hover {
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
     -ms-transform: scale(1.1);
@@ -567,7 +567,7 @@ header #logo {
     transform: scale(1.1);
 }
 
-#lecture .item_list .item .image {
+#analysis .item_list .item .image {
     float: left;
     width: 200px;
     height: 100%;
@@ -576,13 +576,13 @@ header #logo {
     border-radius: 5.1px 0 0 5.1px;
 }
 
-#lecture .item_list .item .column {
+#analysis .item_list .item .column {
     width: 190px;
     height: 100%;
     float: left;
 }
 
-#lecture .item_list .item .title {
+#analysis .item_list .item .title {
     display: block;
     min-height: 33px;
     margin: 10.5px 15px 0 14px;
@@ -598,7 +598,7 @@ header #logo {
     font-size: 18px;
 }
 
-#lecture .item_list .item .content {
+#analysis .item_list .item .content {
     display: block;
     height: 42px;
     margin: 9px 14px;
@@ -611,25 +611,25 @@ header #logo {
     font-family: 'overwatch';
 }
 
-#lecture .item_list .item .progress {
+#analysis .item_list .item .progress {
     width: 100%;
     height: 4.7px;
     background-color: #e0e0e0;
 }
 
-#lecture .item_list .item .progress .full {
+#analysis .item_list .item .progress .full {
     width: 100%;
     height: 4.7px;
     background-color: #e68957;
 }
 
-#lecture .item_list .item .progress .charging {
+#analysis .item_list .item .progress .charging {
     width: 100%;
     height: 4.7px;
     background-color: #19833a;
 }
 
-#lecture .item_list .item .finish_date {
+#analysis .item_list .item .finish_date {
     float: right;
     margin: 4px 12px;
     font-size: 14px;
@@ -640,7 +640,7 @@ header #logo {
 }
 
 
-#lecture .item_list .item .overlay {
+#analysis .item_list .item .overlay {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -654,7 +654,7 @@ header #logo {
     transition: opacity 250ms linear;
 }
 
-#lecture .item_list .item .overlay .button {
+#analysis .item_list .item .overlay .button {
     width: 145.4px;
     height: 37.4px;
     border-radius: 90px;
@@ -671,7 +671,7 @@ header #logo {
     font-family: 'overwatch';
 }
 
-#lecture .item_list .item .overlay .button:hover{
+#analysis .item_list .item .overlay .button:hover{
     background-color: #ffffff;
     color: #19833a;
     -moz-transition: all 0.3s ease-in;
@@ -680,11 +680,11 @@ header #logo {
     transition: all 0.3s ease-in;
 }
 
-#lecture .item_list .item .overlay.hover {
+#analysis .item_list .item .overlay.hover {
     opacity: 1;
 }
 
-#lecture .item_list .item .overlay .image {
+#analysis .item_list .item .overlay .image {
     padding: 0 18.5px;
     font-size: 18px;
     line-height: 125px;
@@ -693,7 +693,7 @@ header #logo {
     word-break: keep-all;
 }
 
-#lecture .item_list .item .image {
+#analysis .item_list .item .image {
     float: left;
     width: 198px;
     height: 100%;
@@ -702,35 +702,35 @@ header #logo {
     border-radius: 5.1px 0 0 5.1px;
 }
 
-#lecture .item_list .item .overlay .image span {
+#analysis .item_list .item .overlay .image span {
     display: inline-block;
     vertical-align: middle;
     line-height: 1.67;
     font-family: 'overwatch';
 }
 
-#lecture .item_list .item .overlay .column {
+#analysis .item_list .item .overlay .column {
     padding: 24px;
 }
 
-#lecture .item_list .item .column {
+#analysis .item_list .item .column {
     width: 190px;
     height: 100%;
     float: left;
 }
 
-#lecture .item_section .section_title .buttons {
+#analysis .item_section .section_title .buttons {
     width: 63.2px;
     height: 28px;
     float: right;
 }
 
-#lecture .item_section .section_title .button.left {
+#analysis .item_section .section_title .button.left {
     margin-right: 7.2px;
     background: url(/images/index/arrow_btn.svg) no-repeat center;
 }
 
-#lecture .item_section .section_title .button {
+#analysis .item_section .section_title .button {
     width: 28px;
     height: 28px;
     border-radius: 3px;
@@ -738,7 +738,7 @@ header #logo {
     cursor: pointer;
 }
 
-#lecture .item_section .section_title .button.right {
+#analysis .item_section .section_title .button.right {
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
@@ -747,7 +747,7 @@ header #logo {
     background: url(/images/index/arrow_btn.svg) no-repeat center;
 }
 
-#lecture .item_section .section_title .button {
+#analysis .item_section .section_title .button {
     width: 28px;
     height: 28px;
     border-radius: 3px;
@@ -959,6 +959,8 @@ footer {
 .container.category .input_warp {
     padding-top: 60px;
     background-color: #096931;
+    height: auto;
+    overflow: hidden;
 }
 
 .container.category .input_warp > .category_btn {
@@ -970,6 +972,7 @@ footer {
     position: relative;
     cursor: pointer;
     float: left;
+    border: 1px solid #096931;
 }
 
 .container.category .input_warp > .category_btn + .category_btn {
@@ -1466,65 +1469,92 @@ footer {
 
 #headline.detail {
     min-height: 937px;
-    padding: 100px 150px;
     font-family: 'overwatch';
+    padding: 0;
 }
 
-#headline.detail .container > div {
+#headline.detail h3 {
+    font-family: 'overwatch';
+    font-weight: 300;
+    color: #ffffff;
+}
+
+#headline.detail .container {
+    width: 100%;
+    height: 937px;
+    overflow: hidden;
+    max-width: unset;
+}
+
+
+#headline.detail .container .detail_top {
+    width: 100%;
+    height: calc(50% + 54px);
+}
+
+#headline.detail .container .detail_bottom {
+    width: 100%;
+    height: calc(50% - 54px);
+    background-color: #0a4623;
+    padding: 30px;
+}
+
+#headline.detail .container .detail_bottom > div {
     display: inline-block;
 }
 
-#headline.detail .container .left_detail {
+#headline.detail .container .detail_bottom .detail_left {
     width: 49%;
-    background-color: red;
-    padding-top: 50px;
+    height: 100%;
 }
 
-
-#headline.detail .container .left_detail .detail_tag > span  {
-    font-size: 36px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    color: #ffffff;
-}
-
-#headline.detail .container .left_detail .detail_content {
-    margin-top: 10px;
-}
-
-#headline.detail .container .left_detail .detail_content.margin-top {
-    margin-top: 30px !important;
-}
-
-#headline.detail .container .left_detail .detail_content > p {
-    margin-bottom: 5px;
-    font-size: 18px;
-    font-weight: 200;
-    letter-spacing: 3px;
-    color: #ffffff;
-}
-
-#headline.detail .container .left_detail .detail_content > span {
-    font-size: 20px;
-    font-weight: 200;
-    letter-spacing: 3px;
-    color: #ffffff;
-}
-
-#headline.detail .container .left_detail .detail_content.title > span {
-    font-size: 20px;
-    line-height: 32px;
-
-}
-
-
-
-
-
-#headline.detail .container .right_detail {
+#headline.detail .container .detail_bottom .detail_right {
     width: 49%;
-    background-color: blue;
+    height: 100%;
+    vertical-align: top;
+    padding-left: 50px;
 }
+
+#headline.detail .container .detail_bottom .detail_left .detail_content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding-left: calc(100% - 660px);
+}
+
+#headline.detail .container .detail_bottom .detail_left .keyword_warp {
+    width: 80%;
+    height: auto;
+    padding: 10px;
+    background-color: #165430;
+    border-radius: 5px;
+    display: inline-block;
+    width: 580px;
+}
+
+#headline.detail .container .detail_bottom .detail_left .detail_keyword {
+    padding-left: 60px; 
+}
+
+#headline.detail .container .detail_bottom .detail_left #chart-area {
+    margin-top: 30px;
+}
+
+#headline.detail .container .detail_bottom .detail_left .keyword_warp > span {
+    font-size: 20px;
+    vertical-align: middle;
+    color: #d4d4d4;
+}
+
+#headline.detail .container .detail_bottom .detail_left .keyword_warp > span + span {
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+#headline.detail .container .detail_bottom .detail_left .keyword_warp h3 {
+    margin-top: 0;
+}
+
 
 
 
@@ -1646,52 +1676,47 @@ footer {
         margin-top: 1rem;
     }
 
-    #lecture .section_list {
+    #analysis .section_list {
         display: block;
         height: auto;
     }
 
-    #lecture .item_section {
+    #analysis .item_section {
         width: 100%;
         float: none;
         padding: 0;
     }
 
-    #lecture .item_section .section_title {
+    #analysis .item_section .section_title {
         padding-left: 43.6px;
     }
 
-    #lecture .item_section .section_subtitle {
+    #analysis .item_section .section_subtitle {
         margin: 21px 0 0 30px;
     }
 
-    #lecture .item_list {
+    #analysis .item_list {
         width: 100%;
         height: 145px;
         margin: 27px 0 45.7px;
         padding-left: 22px;
     }
 
-    #lecture .item_list {
+    #analysis .item_list {
         padding-left: 20.4px;
     }
 
-    #lecture .item_list .item {
+    #analysis .item_list .item {
         width: 324px;
     }
 
-    #lecture .item_list .item .image {
+    #analysis .item_list .item .image {
         width: 134px;
     }
 
-    #lecture .item_list .item .column {
+    #analysis .item_list .item .column {
         width: calc(100% - 134px);
     }
-
-
-
-
-
     #tagging_detail .detail_timer p:nth-of-type(3), 
     #tagging_detail .detail_timer p:nth-of-type(4) {
         font-size: 15px;
@@ -1714,5 +1739,21 @@ footer {
         width: 300px;
         margin-left: 0;
         padding: 10px 20px;
+    }
+
+    .container.category .input_warp {
+        padding-left: calc( 100% / 2 - 75px );
+    }
+
+    .main_warp {
+        padding-left: 10px;
+    }
+
+    .main_warp .item .image {
+        width: 140px;
+    }
+
+    .main_warp .item {
+        min-width: 340px;
     }
 }

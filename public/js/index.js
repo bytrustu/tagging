@@ -330,8 +330,7 @@ const createKeywordChart = () => {
         },
         series: {
             startAngle: -90,
-            endAngle: 90,
-            radiusRange: ['60%', '100%'],
+            endAngle: 90
         }
     };
     var theme = {

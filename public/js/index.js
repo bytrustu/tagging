@@ -100,9 +100,54 @@ const changeItemListStyle = (element, direction) => {
 }
 
 const activeTagging = () => {
+    const link = $('.tagging_url').val();
+    if (!isYoutubeLink(link)) {
+        const backdropHeight = $(document).height();
+        $('#backdrop').css('height', backdropHeight);
+        $('#backdrop').fadeIn(100, function() {
+            showErrorBox('유튜브 링크가 올바르지 않습니다.');
+            $('.error_box').fadeIn(300);
+        });
+        return;
+    }
+
     const target = $('#tagging_detail');
     showTimer(target);
     showSimple();
+}
+
+const getParameter = (url) => {
+    if (!url.includes('?')) return false;
+    if(!url) url = location.search;
+    const query = url.split('?')[1];
+    if (!query) return false;
+    const result = {};
+    query.split('&').forEach((part) => {
+        const item = part.split('=');
+        result[item[0]] = decodeURIComponent(item[1]);
+    });
+    return result;
+}
+
+const isYoutubeLink = (link) => {
+    const linkRange = ["youtube.com", "youtu.be"];
+    return linkRange.map(r => link.includes(r)).some(v => v);
+}
+
+const showErrorBox = (comment) => {
+    const code = `<div class="error_box">
+                            <div class="dot"></div>
+                            <div class="dot two"></div>
+                            <div class="emoji">🙅‍♀️</div>
+                            <div class="message"><span class="alert">에러!</span><p>${comment}</p></div>
+                            <div class="button-box" onclick="closeErrorBox();"><span>확인</span></div>
+                        </div>`
+    $('body').append(code);
+}
+
+const closeErrorBox = () => {
+    $('.error_box').remove();
+    $('#backdrop').css('display', 'none');
 }
 
 const showTimer = (target) => {
@@ -204,7 +249,6 @@ const timerOut = () => {
         if (idx >= 7) clearInterval(outInterval);
         timerElement.css('color','#ff4444');
         idx % 2 === 0 ? timerElement.css('visibility', 'hidden') : timerElement.css('visibility', 'visible');
-        console.log(idx, idx % 2);
         idx++;
     },300);
 

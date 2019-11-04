@@ -234,7 +234,7 @@ const createWordCloud = () => {
         showCloud(data)
         setInterval(function(){
             showCloud(data)
-        },5000) 
+        },3000) 
     });
     wordScale = d3.scale.linear().domain([0, 100]).range([0, 150]).clamp(true);
     var keywords = ["자리야", "트레이서", "한조", "라인하르트"]

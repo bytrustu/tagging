@@ -1490,6 +1490,7 @@ footer {
 #headline.detail .container .detail_top {
     width: 100%;
     height: calc(50% + 54px);
+    padding-top: 54px;
 }
 
 #headline.detail .container .detail_bottom {
@@ -1503,11 +1504,13 @@ footer {
     display: inline-block;
 }
 
+#headline.detail .container .detail_top .detail_left,
 #headline.detail .container .detail_bottom .detail_left {
     width: 49%;
     height: 100%;
 }
 
+#headline.detail .container .detail_top .detail_right,
 #headline.detail .container .detail_bottom .detail_right {
     width: 49%;
     height: 100%;

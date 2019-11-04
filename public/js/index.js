@@ -359,3 +359,7 @@ const createKeywordChart = () => {
     tui.chart.pieChart(container, data, options);
 
 }
+
+const viewYoutube = (link) => {
+    $('.youtubue iframe').attr('src','https://www.youtube.com/embed/UknkihjVwWw');
+}

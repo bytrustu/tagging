@@ -762,6 +762,29 @@ footer {
     height: 300px;
     padding: 35px;
     background-color: #252525;
+    position: relative;
+}
+
+footer .mk-grid {
+    margin: 0 auto;
+}
+
+footer .sub-footer {
+    background-color: #43474d;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    height: 60px;
+    padding-top: 22px;
+    text-align: center;
+}
+
+footer .sub-footer span {
+    font-size: 19px;
+    color: white;
+    font-family: 'overwatch';
+    letter-spacing: 2px;
 }
 
 
@@ -1727,6 +1750,9 @@ a.detail_text:hover {
   background: rgba(0, 0, 0, 0.3);
   z-index: 10;
 }
+
+
+
 
 
 

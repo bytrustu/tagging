@@ -5,12 +5,47 @@
 	<body>
 		<%- partial('layout/layout_header.ejs') %>
 
-		<section id="headline" class="section bg-green" style="height: 637px; padding: 300px 0; text-align: center;">
-			<p style="font-size: 40px; color: #ffffff;">통계 페이지 준비중</p>
+		<section id="headline" class="section bg-green">
+			<div class="container category position-relative">
+				<div class="tagging_warp" style="padding-top: 120px;">
+					<img src="/images/statistics/statistics.png" style="width: 350px;">
+				</div>
+				<div class="input_warp">
+					<div class="category_btn active">
+						<span>전체</span>
+					</div>
+					<div class="category_btn">
+						<span>#스포츠</span>
+					</div>
+					<div class="category_btn">
+						<span>#게임</span>
+					</div>
+					<div class="category_btn">
+						<span>#애완동물</span>
+					</div>
+					<div class="category_btn">
+						<span>#뭐였지</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="main_warp" id="statistics">
+			<div class="left">
+				<p># ="전체 통계</p>
+				<div idall_chart_area"></div>
+			</div>
+			<div class="right">
+				<p>#~~~ 통계</p>
+				<div id="right_all_chart_area"></div>
+			</div>
 		</section>
 
 		<%- partial('layout/layout_footer.ejs') %>
 	</body>
 	<%- partial('layout/layout_script.ejs') %>
- 
+	<script>
+		makeAreaChart('all_chart_area')
+		makePieChart('right_all_chart_area');
+	</script>
 </html>

@@ -407,3 +407,131 @@ const createKeywordChart = () => {
 const viewYoutube = (link) => {
     $('.youtubue iframe').attr('src','https://www.youtube.com/embed/UknkihjVwWw');
 }
+
+const makeAreaChart = (id, data1) => {
+    var container = document.getElementById(id);
+    var data = {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        series: [
+            {
+                name: 'Seoul',
+                data: [20, 40, 25, 50, 15, 45, 33, 34, 20, 30, 22, 13]
+            },
+            {
+                name: 'Sydney',
+                data: [5, 30, 21, 18, 59, 50, 28, 33, 7, 20, 10, 30]
+            },
+            {
+                name: 'Moskva',
+                data: [30, 5, 18, 21, 33, 41, 29, 15, 30, 10, 33, 5]
+            }
+        ]
+    };
+    var options = {
+        chart: {
+            width: 680,
+            height: 250,
+        },
+        series: {
+            zoomable: true,
+            showDot: false,
+            areaOpacity: 1
+        },
+        yAxis: {
+            title: 'Temperature (Celsius)',
+            pointOnColumn: true
+        },
+        xAxis: {
+            title: 'Month'
+        },
+        tooltip: {
+            suffix: '°C'
+        }
+    };
+    var theme = {
+        series: {
+            colors: [
+                '#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
+                '#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd'
+            ]
+        }
+    };
+    // For apply theme
+    // tui.chart.registerTheme('myTheme', theme);
+    // options.theme = 'myTheme';
+    tui.chart.areaChart(container, data, options);
+}
+
+const makePieChart = (id) => {
+    var container = document.getElementById(id);
+    var data = {
+        categories: ['Browser'],
+        series: [
+            {
+                name: 'Chrome',
+                data: 46.02
+            },
+            {
+                name: 'IE',
+                data: 20.47
+            },
+            {
+                name: 'Firefox',
+                data: 17.71
+            },
+            {
+                name: 'Safari',
+                data: 5.45
+            },
+            {
+                name: 'Opera',
+                data: 3.10
+            },
+            {
+                name: 'Etc',
+                data: 7.25
+            }
+        ]
+    };
+    var options = {
+        chart: {
+            width: 680,
+            height: 250
+            
+        },
+        chartExportMenu: {
+            visible: false,
+        },
+        tooltip: {
+            suffix: '%'
+        },
+        series: {
+            startAngle: -90,
+            endAngle: 90
+        }
+    };
+    var theme = {
+        chart : {
+            background : 'transparent'
+        },
+        series: {
+            label: {
+	            color: '#fff',
+	            fontFamily: 'sans-serif'
+	        },
+            backgroundColor : '#0a4623'
+        },
+        legend: {
+            label: {
+              color: '#ffffff'
+            }
+          }
+    };
+
+    // For apply theme
+
+    tui.chart.registerTheme('myTheme', theme);
+    options.theme = 'myTheme';
+
+    tui.chart.pieChart(container, data, options);
+}

@@ -53,15 +53,7 @@ $(document).ready(function(){
         changeItemListStyle($(this).parents('.item_section').find('.item_list'), 'right');
     });
 
-    $('.category_btn').on('click', function(){
-        if ($(this).hasClass('active')) return;
-        const categoryElements = $('.category_btn');
-        for (const element of categoryElements) {
-            const isActvie = $(element).hasClass('active');
-            if (isActvie) $(element).removeClass('active');
-        }
-        $(this).addClass('active');
-    });
+    
 
     let scroll = 0;
     $(window).scroll(function () { 
@@ -534,4 +526,9 @@ const makePieChart = (id) => {
     options.theme = 'myTheme';
 
     tui.chart.pieChart(container, data, options);
+}
+
+const substringStr = (str, size) => {
+    if (str.length <= size) return str;
+    return `${str.substring(0, size)}...`;
 }

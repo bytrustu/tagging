@@ -2,10 +2,10 @@ const mysql = require('mysql');
 const func = require('./func.js');
 
 module.exports.mysqlconfig = {
-	host : "localhost",
+	host : "133.186.216.202",
 	port : "3306",
 	user : "root",
-	password : "1234",
+	password : "dkagh123??",
 	database : "tagging",
 	connectionLimit:100,
     waitForConnections:true

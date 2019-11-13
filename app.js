@@ -45,6 +45,10 @@ app.get('/category', routes.category);
 app.get('/statistics', routes.statistics);
 app.get('/category/detail/:no', routes.detail);
 
+app.get('/rest/category_list/:cat_id', restful.category_list);
+
+
+
 /*
 http.createServer(function (req, res) {
     res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });

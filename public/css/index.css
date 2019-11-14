@@ -965,10 +965,22 @@ footer .sub-footer span {
 #tagging_detail > .sub {
     position: absolute;
     background-color : #096931;
-    bottom: -27px;
+    bottom: 0;
     height: 0;
     width: 100%;
     z-index: 10;
+}
+
+
+#tagging_detail .sub .final_comment {
+    position: absolute;
+    transform: translate(-50%, -30%);
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    font-size: 50px;
+    color: #ffffff;
+    font-family: 'overwatch';
 }
 
 
@@ -1759,8 +1771,188 @@ a.detail_text:hover {
 
 
 
+.statistics_warp {
+    width: 100%;
+    height: 877px;
+    padding-top: 190px;
+    text-align: center;
+}
+
+.statistics_warp .statistics_item {
+    width: 15%;
+    min-width: 280px;
+    height: 600px;
+    background-color: #ffffff;
+    /* border: 1px solid #dddddd; */
+    border-radius: 17px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.statistics_warp .statistics_item + .statistics_item {
+    margin-left: 80px;
+}
+
+.statistics_warp .statistics_item .top {
+    width: 100%;
+    height: 200px;
+    background-image: linear-gradient(#265f3e, #0a4623);
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    position: relative;
+}
+
+.statistics_warp .statistics_item .top img{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.statistics_warp .statistics_item .top #img_sports {
+    width: 250px;
+    height: 260px;
+    top: -78px;
+}
+.statistics_warp .statistics_item .top #img_game {
+    width: 130px;
+    height: 193px;
+    top: -30px;
+}
+.statistics_warp .statistics_item .top #img_animal {
+    width: 183px;
+    height: 190px;
+    top: -27px;
+}
+.statistics_warp .statistics_item .top #img_food {
+    width: 167px;
+    height: 207px;
+    top: -40px;
+}
+
+.statistics_warp .statistics_item .bottom {
+    height: calc(100% - 200px);
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    text-align: left;
+    padding: 35px 20px;
+    position: relative;
+}
+
+.statistics_warp .statistics_item .bottom > .statistics_comment > span {
+    vertical-align: middle;
+    font-family: 'overwatch';
+    font-size: 20px;
+}
+
+.statistics_warp .statistics_item .bottom > .statistics_comment + .statistics_comment {
+    margin-top: 20px;
+}
+
+.statistics_item .num {
+    margin-right: 5px;
+}
+
+.statistics_warp .statistics_item .bottom .statistics_footer {
+    width: 100%;
+    height: 50px;
+    background-color: #265f3e;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    text-align: center;
+    padding-top: 18px;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+.statistics_warp .statistics_item .bottom .statistics_footer:hover{
+    background-color: #144f2c;
+}
+
+.statistics_warp .statistics_item .bottom .statistics_footer span {
+    font-family: 'overwatch';
+    font-size: 20px;
+    color: #ffffff;
+}
 
 
+
+
+
+.statistics_box {
+    display: none;
+    position: fixed;
+    width: 1000px;
+    height: 700px;
+    left: 50%;
+    top: 48%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to bottom left, #b9b9b9 40%, #cecece 100%);
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px #000000;
+    z-index: 100;
+}
+
+.statistics_box .dot {
+    width: 15px;
+    height: 15px;
+    background: #FCFCFC;
+    border-radius: 50%;
+    position: absolute;
+    top: 4%;
+    right: 50px;
+}
+
+.statistics_box .dot.two {
+    right: 80px;
+    opacity: .5;
+}
+
+.statistics_box .emoji {
+    font-size: 58px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 65px;
+}
+
+.statistics_box .message {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    height: 40%;
+    top: 47%;
+    font-family: 'overwatch';
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+.statistics_box .button-box {
+    position: absolute;
+    background: #0a4623;
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    outline: 0;
+    border: none;
+    box-shadow: 2px 2px 10px rgba(119, 119, 119, 0.5);
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+    padding-top: 11px;
+    text-align: center;
+    z-index: 100;
+}
+
+.statistics_box .button-box span {
+    color: #ffffff;
+}
 
 
 
@@ -1948,6 +2140,21 @@ a.detail_text:hover {
         width: 300px;
         margin-left: 0;
         padding: 10px 20px;
+    }
+
+    #tagging_detail .sub {
+        position: relative;
+    }
+
+    #final_comment {
+        position: absolute;
+        transform: translate(-50%, -30%);
+        left: 50%;
+        top: 50%;
+        text-align: center;
+        font-size: 50px;
+        color: #ffffff;
+        font-family: 'overwatch';
     }
 
     .container.category .input_warp {

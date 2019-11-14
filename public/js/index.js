@@ -145,7 +145,7 @@ const closeErrorBox = () => {
 const showTimer = (target) => {
     moveTargetSlide(target);
     target.css('height','936px');
-    target.css('transition','all 1.5s ease-in-out');
+    target.css('transition','all 1.2s ease-in-out');
     setTimeout(()=>{
         $('.btn_start').text('분석중');
         $('.btn_start').css('background-color', '#0a4623');
@@ -164,7 +164,6 @@ const showTimer = (target) => {
             const sec = parseInt(timerElement.attr('data-time'));
             timerElement.attr('data-time',sec+1);
             timerElement.text(drawTime(sec));
-
             if (sec === 10) {
                 timerOut();
             }
@@ -249,11 +248,23 @@ const timerOut = () => {
         subElement.removeClass('d-none');
         setTimeout(()=>{
             subElement.css('height','1000px');
-            subElement.css('transition','all 4s ease-in-out');
+            subElement.css('transition','all 2s ease-in-out');
         },500);
         setTimeout(()=>{
             subElement.css('background-color', '#0a4623');
             subElement.css('transition','all 1s ease-in-out');
+
+            setTimeout(() => {
+                const finalComment = `<div class="final_comment animated fadeIn" id="final_comment">
+                                        결과 화면으로 전환 됩니다 👏
+                                    </div>`;
+                $('#tagging_detail .sub').html(finalComment);
+                
+                setTimeout(() => {
+                    location.href="/category/detail/91";
+                },1000);
+            }, 1000);
+
         },2500)
         
     },2000)

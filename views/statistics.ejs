@@ -5,47 +5,206 @@
 	<body>
 		<%- partial('layout/layout_header.ejs') %>
 
-		<section id="headline" class="section bg-green">
-			<div class="container category position-relative">
-				<div class="tagging_warp" style="padding-top: 120px;">
-					<img src="/images/statistics/statistics.png" style="width: 350px;">
+		<section class="statistics_warp bg-deepgreen">
+			<article class="statistics_item">
+				<div class="top">
+					<img id="img_sports" src="/images/statistics/sports.png">
 				</div>
-				<div class="input_warp">
-					<div class="category_btn active">
-						<span>전체</span>
+				<div class="bottom">
+						<div class="statistics_comment">
+							<span class="num">1</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_comment">
+							<span class="num">2</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_comment">
+							<span class="num">3</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_comment">
+							<span class="num">4</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_comment">
+							<span class="num">5</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_comment">
+							<span class="num">6</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_footer" onclick="showStatisticsBox(this);">
+							<span>자세히보기</span>
+						</div>
+	
 					</div>
-					<div class="category_btn">
-						<span>#스포츠</span>
-					</div>
-					<div class="category_btn">
-						<span>#게임</span>
-					</div>
-					<div class="category_btn">
-						<span>#애완동물</span>
-					</div>
-					<div class="category_btn">
-						<span>#뭐였지</span>
-					</div>
-				</div>
-			</div>
-		</section>
+			</article>
 
-		<section class="main_warp" id="statistics">
-			<div class="left">
-				<p># ="전체 통계</p>
-				<div idall_chart_area"></div>
-			</div>
-			<div class="right">
-				<p>#~~~ 통계</p>
-				<div id="right_all_chart_area"></div>
-			</div>
+			<article class="statistics_item">
+				<div class="top">
+					<img id="img_game" src="/images/statistics/game.png">
+				</div>
+				<div class="bottom">
+					<div class="statistics_comment">
+						<span class="num">1</span>
+						<span class="statistics_title">제목 :</span>
+						<span class="statistics_text">내용</span>
+					</div>
+
+					<div class="statistics_comment">
+						<span class="num">2</span>
+						<span class="statistics_title">제목 :</span>
+						<span class="statistics_text">내용</span>
+					</div>
+
+					<div class="statistics_comment">
+						<span class="num">3</span>
+						<span class="statistics_title">제목 :</span>
+						<span class="statistics_text">내용</span>
+					</div>
+
+					<div class="statistics_comment">
+						<span class="num">4</span>
+						<span class="statistics_title">제목 :</span>
+						<span class="statistics_text">내용</span>
+					</div>
+
+					<div class="statistics_comment">
+						<span class="num">5</span>
+						<span class="statistics_title">제목 :</span>
+						<span class="statistics_text">내용</span>
+					</div>
+
+					<div class="statistics_comment">
+						<span class="num">6</span>
+						<span class="statistics_title">제목 :</span>
+						<span class="statistics_text">내용</span>
+					</div>
+
+					<div class="statistics_footer" onclick="showStatisticsBox(this);">
+						<span>자세히보기</span>
+					</div>
+
+				</div>
+			</article>
+
+			<article class="statistics_item">
+				<div class="top">
+					<img id="img_animal" src="/images/statistics/animal.png">
+				</div>
+				<div class="bottom">
+						<div class="statistics_comment">
+							<span class="num">1</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_comment">
+							<span class="num">2</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_comment">
+							<span class="num">3</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_comment">
+							<span class="num">4</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_comment">
+							<span class="num">5</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_comment">
+							<span class="num">6</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_footer" onclick="showStatisticsBox(this);">
+							<span>자세히보기</span>
+						</div>
+	
+					</div>
+			</article>
+
+			<article class="statistics_item">
+				<div class="top">
+					<img id="img_food" src="/images/statistics/food.png">
+				</div>
+				<div class="bottom">
+						<div class="statistics_comment">
+							<span class="num">1</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_comment">
+							<span class="num">2</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_comment">
+							<span class="num">3</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_comment">
+							<span class="num">4</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_comment">
+							<span class="num">5</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_comment">
+							<span class="num">6</span>
+							<span class="statistics_title">제목 :</span>
+							<span class="statistics_text">내용</span>
+						</div>
+	
+						<div class="statistics_footer" onclick="showStatisticsBox(this);">
+							<span>자세히보기</span>
+						</div>
+	
+					</div>
+			</article>
+
+
 		</section>
+		<div id="backdrop"></div>
 
 		<%- partial('layout/layout_footer.ejs') %>
 	</body>
+	<script src="/js/statistics.js"></script>
 	<%- partial('layout/layout_script.ejs') %>
-	<script>
-		makeAreaChart('all_chart_area')
-		makePieChart('right_all_chart_area');
-	</script>
+	
 </html>

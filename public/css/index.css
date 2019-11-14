@@ -232,6 +232,10 @@ body {
     background: linear-gradient(rgb(244, 243, 242), rgb(244, 243, 242)) !important;
 }
 
+.bg-gray {
+    background-color: #004612bf !important;
+}
+
 .position-relative {
     position: relative;
 }
@@ -387,8 +391,9 @@ header #logo {
 }
 
 #items .item_list {
+    /* width: 640px; */
     position: relative;
-    width: 640px;
+    width: 435px;
     height: 256px;
     margin: auto;
     top: -107.4px;
@@ -1578,7 +1583,7 @@ footer .sub-footer span {
     width: 80%;
     height: auto;
     padding: 10px;
-    background-color: #165430;
+    background-color: #ffffff;
     border-radius: 5px;
     display: inline-block;
     width: 580px;
@@ -1595,7 +1600,7 @@ footer .sub-footer span {
 #headline.detail .container .detail_bottom .detail_left .keyword_warp > span {
     font-size: 20px;
     vertical-align: middle;
-    color: #d4d4d4;
+    color: #000000;
 }
 
 #headline.detail .container .detail_bottom .detail_left .keyword_warp > span + span {
@@ -1610,11 +1615,12 @@ footer .sub-footer span {
 .tag {
     color: #ffffff;
     font-size: 16px;
-    border: 2px solid #ffffff;
+    border: 2px solid #000000;
     border-radius: 5px;
     padding: 10px 20px;
     display: inline-block;
     letter-spacing: 2px;
+    background-color: #165430;
 }
 
 .youtube {
@@ -1648,8 +1654,8 @@ iframe {
 .num {
     color: #ffffff;
     font-size: 15px;
-    border: 1px solid #ffffff;
-    background-color: #0a4623;
+    border: 1px solid #000000;
+    background-color: #165430;
     border-radius: 5px;
     display: inline-block;
     letter-spacing: 2px;
@@ -1672,7 +1678,7 @@ iframe {
 }
 
 .detail_text {
-    color: #e69999;
+    color: #ffffff;
     font-size: 20px;
     vertical-align: middle;
     letter-spacing: 3px;
@@ -1774,8 +1780,9 @@ a.detail_text:hover {
 .statistics_warp {
     width: 100%;
     height: 877px;
-    padding-top: 190px;
+    padding-top: 160px;
     text-align: center;
+    background: linear-gradient(to bottom left, #40744d 40%, #ffffff 100%);
 }
 
 .statistics_warp .statistics_item {
@@ -1795,7 +1802,7 @@ a.detail_text:hover {
 
 .statistics_warp .statistics_item .top {
     width: 100%;
-    height: 200px;
+    height: 150px;
     background-image: linear-gradient(#265f3e, #0a4623);
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
@@ -1809,34 +1816,34 @@ a.detail_text:hover {
 }
 
 .statistics_warp .statistics_item .top #img_sports {
-    width: 250px;
-    height: 260px;
-    top: -78px;
+    width: 214px;
+    height: 220px;
+    top: -70px;
 }
 .statistics_warp .statistics_item .top #img_game {
-    width: 130px;
-    height: 193px;
-    top: -30px;
+    width: 112px;
+    height: 160px;
+    top: -31px;
 }
 .statistics_warp .statistics_item .top #img_animal {
-    width: 183px;
-    height: 190px;
-    top: -27px;
+    width: 162px;
+    height: 179px;
+    top: -44px;
 }
 .statistics_warp .statistics_item .top #img_food {
-    width: 167px;
-    height: 207px;
-    top: -40px;
+    width: 156px;
+    height: 179px;
+    top: -48px;
 }
 
 .statistics_warp .statistics_item .bottom {
-    height: calc(100% - 200px);
+    height: calc(100% - 75px);
     width: 100%;
     background-color: #ffffff;
     border-bottom-left-radius: 14px;
     border-bottom-right-radius: 14px;
     text-align: left;
-    padding: 35px 20px;
+    padding: 50px 20px;
     position: relative;
 }
 
@@ -1879,6 +1886,23 @@ a.detail_text:hover {
     color: #ffffff;
 }
 
+.statistics_warp .statistics_item .bottom .statistics_subject {
+    width: 100%;
+    height: 50px;
+    background-color: #dddddd;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+    padding-top: 18px;
+}
+
+.statistics_warp .statistics_item .bottom .statistics_subject span {
+    font-size: 25px;
+    font-family: 'overwatch';
+    letter-spacing: 2px;
+}
+
 
 
 
@@ -1891,7 +1915,7 @@ a.detail_text:hover {
     left: 50%;
     top: 48%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(to bottom left, #b9b9b9 40%, #cecece 100%);
+    background: linear-gradient(to bottom left, #e4e4e4 40%, #ffffff 100%);
     border-radius: 20px;
     box-shadow: 5px 5px 20px #000000;
     z-index: 100;

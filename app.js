@@ -41,8 +41,8 @@ app.all("*", function(req, res, next){
 
 app.get('/', routes.index);
 app.get('/tagging', routes.tagging);
-app.get('/category', routes.category);
-app.get('/statistics', routes.statistics);
+app.get('/category', routes.statistics);
+// app.get('/statistics', routes.statistics);
 app.get('/category/detail/:no', routes.detail);
 
 app.get('/rest/category_list/:cat_id', restful.category_list);

@@ -2,6 +2,7 @@ let passWidth;
 let timerInterval;
 
 $(document).ready(function(){
+
     passWidth = $(window).width() < 416 ? -$(window).width() : -415;
     if ($(window).width() <= 416) {
         const elements = $('.item_list .item');
@@ -44,12 +45,12 @@ $(document).ready(function(){
     });
 
 
-    $('.button.left').on('click', function(){
+    $('#analysis .button.left').on('click', function(){
         changeItemListStyle($(this).parents('.item_section').find('.item_list'), 'left');
     });
 
 
-    $('.button.right').on('click', function(){
+    $('#analysis .button.right').on('click', function(){
         changeItemListStyle($(this).parents('.item_section').find('.item_list'), 'right');
     });
 
@@ -69,6 +70,8 @@ $(document).ready(function(){
     $(document).on('click', '.detail_simple .left', function(){
         window.open($('.detail_simple .left').attr('data-link'));
     });
+
+
     
 });
 
@@ -542,4 +545,21 @@ const makePieChart = (id) => {
 const substringStr = (str, size) => {
     if (str.length <= size) return str;
     return `${str.substring(0, size)}...`;
+}
+
+const showLoading = () => {
+    const code = `<div class="main loading_main">
+                    <div class="container">
+                        <div class="loading-container">
+                            <div class="loading"></div>
+                            <div id="loading-text">로딩중</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="loading_back" class="animate fadeIn"></div>`;
+    $('body').append(code);
+}
+
+const closeLoading = () => {
+    $('.loading_main, #loading_back').remove();
 }

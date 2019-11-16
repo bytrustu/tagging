@@ -1042,11 +1042,8 @@ footer .sub-footer span {
 }
 
 .main_warp {
-    padding: 80px;
-    min-height: 357px;
-    height: 100%;
-    overflow:hidden;
-	height:auto;
+    min-height: 390px;
+    overflow: hidden;
 }
 
 .main_warp .item_warp + .item_warp {
@@ -1055,16 +1052,20 @@ footer .sub-footer span {
 
 .main_warp .item {
     position: relative;
-    min-width: 390px;
-    height: 135.3px;
-    margin: 0 25px 11px 0;
+    min-width: 260px;
+    height: 110px;
     float: left;
     border-radius: 5.1px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23);
     background-color: white;
     text-align: left;
     overflow: hidden;
-    border: 1px solid #f7f7f7;
+    border: 1px solid #dddddd;
+    cursor: pointer;
+}
+
+.main_warp .item + .item {
+    margin-top: 15px;
 }
 
 .main_warp .item .main {
@@ -1106,8 +1107,8 @@ footer .sub-footer span {
 
 .main_warp .item .content {
     display: block;
-    height: 42px;
-    margin: 9px 14px;
+    height: 28px;
+    margin: 9px 14px 0 14px;
     font-size: 13px;
     line-height: 1.62;
     letter-spacing: -0.13px;
@@ -1164,7 +1165,7 @@ footer .sub-footer span {
 
 .main_warp .item .image {
     float: left;
-    width: 198px;
+    width: 115px;
     height: 100%;
     object-fit: cover;
     object-position: left center;
@@ -1185,7 +1186,7 @@ footer .sub-footer span {
 }
 
 .main_warp .item .column {
-    width: 190px;
+    width: 143px;
     height: 100%;
     float: left;
 }
@@ -1773,14 +1774,25 @@ a.detail_text:hover {
   z-index: 10;
 }
 
+#loading_back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 50, 50, 0.96);
+    z-index: 10;
+}
+
 
 
 
 
 .statistics_warp {
     width: 100%;
-    height: 877px;
+    min-height: 877px;
     padding-top: 160px;
+    height: calc(100% - 60px);
     text-align: center;
     background: linear-gradient(to bottom left, #40744d 40%, #ffffff 100%);
 }
@@ -1821,7 +1833,7 @@ a.detail_text:hover {
     top: -70px;
 }
 .statistics_warp .statistics_item .top #img_game {
-    width: 112px;
+    width: 150px;
     height: 160px;
     top: -31px;
 }
@@ -1843,7 +1855,7 @@ a.detail_text:hover {
     border-bottom-left-radius: 14px;
     border-bottom-right-radius: 14px;
     text-align: left;
-    padding: 50px 20px;
+    padding: 70px 0px 0 13px;
     position: relative;
 }
 
@@ -2026,6 +2038,102 @@ a.detail_text:hover {
     background-color: #ffffff !important;
 }
 
+
+
+
+.statistics_item .item_list {
+    /* width: 640px; */
+    position: relative;
+    width: 435px;
+    height: 256px;
+    margin: auto;
+    top: -107.4px;
+}
+
+.statistics_item .item_list::after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+.statistics_item  .item_list .item {
+    width: 176.2px;
+    height: 214.8px;
+    margin: 0 18.4px;
+    padding: 31.2px 18px;
+    float: left;
+    border-radius: 5px;
+    box-shadow: 1px 2px 6px 0 rgba(0, 0, 0, 0.4);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+.statistics_item  .item_list .item_first {
+    background-color: #4d90a7;
+}
+
+.statistics_item  .item_list .item_second {
+    background-color: #5978b7;
+}
+
+.statistics_item  .item_list .item_third {
+    background-color: #19833a;
+}
+
+.statistics_item  .item_list .item .icon {
+    display: block;
+    margin: auto;
+    width: 75.3px;
+    height: 75.3px;
+}
+
+.statistics_item  .item_list .item .button {
+    width: 140.3px;
+    height: 25px;
+    margin: 0 auto;
+    border-radius: 2px;
+    border: solid 2px #ffffff;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: -0.13px;
+    background-color: linear-gradient(rgb(0, 0, 0, 0.2), rgb(0, 0, 0, 0.2));
+    font-family: 'overwatch';
+}
+
+.statistics_item  .item_list .item .button:hover {
+    background-color: #ffffff;
+    -moz-transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+}
+
+.statistics_item  .item_list .item .button:nth-of-type(1):hover {
+    color: #4d90a7;
+}
+
+.statistics_item  .item_list .item .button:nth-of-type(2):hover {
+    color: #5978b7;
+}
+
+.statistics_item  .item_list .item .button:nth-of-type(3):hover {
+    color: #19833a;
+}
+/* 
+.faster {
+    animation-delay: 0.1s;
+}
+ */
+
+
+.main.loading_main {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translateX(-50%);
+    z-index: 20;
+}
 
 
 

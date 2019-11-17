@@ -45,7 +45,7 @@ app.get('/category', routes.statistics);
 // app.get('/statistics', routes.statistics);
 app.get('/category/detail/:no', routes.detail);
 
-app.get('/rest/category_list/:cat_id', restful.category_list);
+app.get('/rest/category_list', restful.category_list);
 
 
 

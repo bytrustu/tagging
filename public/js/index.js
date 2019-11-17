@@ -1,5 +1,6 @@
 let passWidth;
 let timerInterval;
+let mainDic = {};
 
 $(document).ready(function(){
 
@@ -20,30 +21,6 @@ $(document).ready(function(){
         }
     });
 
-    let idx = 0;
-    let flag = 1;
-    setInterval(()=>{
-        const max = $('.slider_item_wrapper .item').length;
-        
-        if (idx === max - 1) flag = -1;
-        if (idx === 0) flag = 1;
-        $('.slider_item_wrapper').css({
-            'transition':'all 0.25s ease-out 0s',
-            'height':'248px',
-            'top':`${(idx) * -37}px`
-        });
-        idx += flag;
-    },2000);
-
-
-    $('.item').hover(function(){
-        $(this).find('.main').addClass('hover');
-        $(this).find('.overlay').addClass('hover');
-    }, function(){
-        $(this).find('.main').removeClass('hover');
-        $(this).find('.overlay').removeClass('hover');
-    });
-
 
     $('#analysis .button.left').on('click', function(){
         changeItemListStyle($(this).parents('.item_section').find('.item_list'), 'left');
@@ -53,6 +30,8 @@ $(document).ready(function(){
     $('#analysis .button.right').on('click', function(){
         changeItemListStyle($(this).parents('.item_section').find('.item_list'), 'right');
     });
+
+    showMainCategoryList();
 
     
 
@@ -562,4 +541,75 @@ const showLoading = () => {
 
 const closeLoading = () => {
     $('.loading_main, #loading_back').remove();
+}
+
+const showMainCategoryList = () => {
+    getMainCategoryList(data => {
+        mainDic = data;
+        Object.keys(mainDic).map(v => {drawMainItemList(v, 0)});
+
+        let idx = 0;
+        let flag = 1;
+        setInterval(()=>{
+            const max = $('.slider_item_wrapper .item').length;
+            
+            if (idx === max - 1) flag = -1;
+            if (idx === 0) flag = 1;
+            $('.slider_item_wrapper').css({
+                'transition':'all 0.25s ease-out 0s',
+                'height':'248px',
+                'top':`${(idx) * -37}px`
+            });
+            idx += flag;
+        },2000);
+
+
+        $('.item').hover(function(){
+            $(this).find('.main').addClass('hover');
+            $(this).find('.overlay').addClass('hover');
+        }, function(){
+            $(this).find('.main').removeClass('hover');
+            $(this).find('.overlay').removeClass('hover');
+        });
+    });
+}
+
+const getMainCategoryList = (callback) => {
+    $.ajax({
+        type:'GET',
+        url:`/rest/category_list`,
+        success: data => {
+            callback(data);
+        },
+        error : e => {
+        },
+        complete: data => {
+        }
+    });
+}
+
+const drawMainItemList = (type,index) => {
+    let code = '';
+    for(let i=index; i<index+6; i++) {
+        if (!mainDic[type][i]) break;
+        const data = mainDic[type][i];
+        code += `<div class="item">
+                    <div class="main">
+                        <img class="image" src="${data.thumbnail}">
+                        <div class="column">
+                            <h5 class="title">${substringStr(data.title, 10)}</h5>
+                            <p class="content">${substringStr(data.text, 30)}</p>
+                            <div class="progress"><div class="progress_bar charging"></div></div>
+                            <span class="finish_date">분류완료</span>
+                        </div>
+                    </div>
+                    <div class="overlay">
+                        <div class="image"><span>${substringStr(data.title, 10)}</span></div>
+                        <div class="column">
+                            <a href="/category/detail/${data.data_id}" target="_blank"><div class="button detail">자세히 보기</div></a>
+                        </div>
+                    </div>
+                </div>`;
+    }
+    $(`#main_${type}`).html(code);
 }

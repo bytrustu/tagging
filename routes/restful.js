@@ -17,18 +17,7 @@ function send(res, code, data) {
 }
 
 module.exports.category_list = function(req, res){
-	const cat_id = req.params.cat_id;
-	if (!cat_id) send(res, 404);
-	const keyDic = {
-		sports : '스포츠',
-		game : '게임',
-		animal : '애완동물',
-		etc : '기타',
-		all : '전체'
-	}
-	const key = keyDic[cat_id];
-
-	db_.categoryList(key, function(data){
+	db_.categoryList(function(data){
 		if (data) {
 			send(res, 200, data);
 		} else {

@@ -74,9 +74,14 @@ const changeItemListStyle = (element, direction) => {
 }
 
 const activeTagging = () => {
+    const url = $('.tagging_url').val();
+    console.log(url);
     $.ajax({
-        type:'GET',
+        type:'POST',
         url:'/rest/active_tagging',
+        data:{
+            url
+        },
         success:data => {
             console.log(data);
         },

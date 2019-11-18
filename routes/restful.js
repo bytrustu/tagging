@@ -30,7 +30,8 @@ module.exports.category_list = function(req, res){
 
 module.exports.active_tagging = function(req, res){
 	console.log('start');
-	child = exec('java -jar C:\\git\\tagging\\youtube\\Tagging.jar https://www.youtube.com/watch?v=64BYgOj0rGg C:\\git\\tagging\\public\\youtube\\img C:\\git\\tagging\\public\\youtube\\video',
+	const url = req.body.url;
+	child = exec(`java -jar /tagging/youtube/Tagging.jar ${url} /tagging/publicyoutube/img /tagging/public/youtube/video`,
 	function (error, stdout, stderr){
 		console.log('stdout: ' + stdout);
 		console.log('stderr: ' + stderr);

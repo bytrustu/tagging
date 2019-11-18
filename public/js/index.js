@@ -74,6 +74,20 @@ const changeItemListStyle = (element, direction) => {
 }
 
 const activeTagging = () => {
+    $.ajax({
+        type:'GET',
+        url:'/rest/active_tagging',
+        success:data => {
+            console.log(data);
+        },
+        error:e => {
+            console.log(e);
+        },
+        complete:data =>{
+        }
+    })
+
+    return;
     const link = $('.tagging_url').val();
     if (!isYoutubeLink(link)) {
         const backdropHeight = $(document).height();

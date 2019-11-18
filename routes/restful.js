@@ -9,6 +9,8 @@ const iconv = require("iconv-lite");
 const func				= require("./../custom_module/func.js");
 const db_ 					= require("./../custom_module/db_query.js");
 const request = require('request');
+var exec = require('child_process').exec, child;
+
 
 function send(res, code, data) {
 	if (!data) data = {};
@@ -24,4 +26,17 @@ module.exports.category_list = function(req, res){
 			send(res, 404);
 		}
 	});
+};
+
+module.exports.active_tagging = function(req, res){
+	console.log('start');
+	child = exec('java -jar C:\\git\\tagging\\youtube\\Tagging.jar https://www.youtube.com/watch?v=64BYgOj0rGg C:\\git\\tagging\\public\\youtube\\img C:\\git\\tagging\\public\\youtube\\video',
+	function (error, stdout, stderr){
+		console.log('stdout: ' + stdout);
+		console.log('stderr: ' + stderr);
+		if(error !== null){
+			console.log('exec error: ' + error);
+		}
+	});
+
 };

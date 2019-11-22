@@ -194,7 +194,7 @@ const showStartTagging = (url) => {
 const requestTagging = (url, callback) => {
     $.ajax({
         type : 'POST',
-        url : 'http://localhost:8888/active_process',
+        url : 'http://133.186.211.106:8888/active_process',
         data : {
             url
         },

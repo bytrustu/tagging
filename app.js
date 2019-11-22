@@ -6,7 +6,7 @@ const engine = require('ejs-locals');
 const restful = require("./routes/restful.js");
 const app = express();
 
-app.set('port', process.env.PORT || 7777);
+app.set('port', process.env.PORT || 8888);
 app.engine('ejs', engine);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');

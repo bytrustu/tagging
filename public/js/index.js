@@ -33,8 +33,6 @@ $(document).ready(function(){
 
     showMainCategoryList();
 
-    
-
     let scroll = 0;
     $(window).scroll(function () { 
         let current = $(document).scrollTop(); 
@@ -49,9 +47,6 @@ $(document).ready(function(){
     $(document).on('click', '.detail_simple .left', function(){
         window.open($('.detail_simple .left').attr('data-link'));
     });
-
-
-    
 });
 
 
@@ -92,7 +87,7 @@ const activeTagging = () => {
         if (data) {
             showCompleteTagging(data.data_id);
         } else {
-            showStartTagging();
+            showStartTagging(param.v);
         }
     });
     return;
@@ -126,11 +121,6 @@ const showCompleteTagging = (data_id) => {
             }, 2500);
 }
 
-const showStartTagging = () => {
-    const target = $('#tagging_detail');
-    showTimer(target);
-    showSimple();
-}
 
 const isRegisterData = (key, callback) => {
     $.ajax({
@@ -189,6 +179,32 @@ const showErrorBox = (comment) => {
 const closeErrorBox = () => {
     $('.error_box').remove();
     $('#backdrop').css('display', 'none');
+}
+
+const showStartTagging = (url) => {
+    const target = $('#tagging_detail');
+    showTimer(target);
+    requestTagging(url, data => {
+
+    });
+    return;
+    showSimple();
+}
+
+const requestTagging = (url, callback) => {
+    $.ajax({
+        type : 'POST',
+        url : 'http://localhost:8888/active_process',
+        data : {
+            url
+        },
+        success : data => {
+            console.log(data);
+            callback(data);
+        },
+        error : e => {},
+        complete : data => {}
+    });
 }
 
 const showTimer = (target) => {

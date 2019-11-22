@@ -46,7 +46,7 @@ app.get('/category', routes.statistics);
 app.get('/category/detail/:no', routes.detail);
 
 app.get('/rest/category_list', restful.category_list);
-app.post('/rest/active_tagging', restful.active_tagging);
+app.post('/rest/is_register_data', restful.is_register_data);
 
 
 /*

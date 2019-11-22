@@ -9,7 +9,6 @@ const iconv = require("iconv-lite");
 const func				= require("./../custom_module/func.js");
 const db_ 					= require("./../custom_module/db_query.js");
 const request = require('request');
-var exec = require('child_process').exec, child;
 
 
 function send(res, code, data) {
@@ -28,16 +27,14 @@ module.exports.category_list = function(req, res){
 	});
 };
 
-module.exports.active_tagging = function(req, res){
-	console.log('start');
-	const url = req.body.url;
-	child = exec(`java -jar /tagging/youtube/Tagging.jar ${url} /tagging/publicyoutube/img /tagging/public/youtube/video`,
-	function (error, stdout, stderr){
-		console.log('stdout: ' + stdout);
-		console.log('stderr: ' + stderr);
-		if(error !== null){
-			console.log('exec error: ' + error);
+module.exports.is_register_data = function(req, res){
+	const {key} = req.body;
+	
+	db_.isRegisterData(key, function(result){
+		if (result) {
+			send(res, 200, result.data);
+		} else {
+			send(res, 404);
 		}
 	});
-
 };

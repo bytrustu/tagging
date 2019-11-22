@@ -75,38 +75,86 @@ const changeItemListStyle = (element, direction) => {
 
 const activeTagging = () => {
     const url = $('.tagging_url').val();
-    console.log(url);
-    $.ajax({
-        type:'POST',
-        url:'/rest/active_tagging',
-        data:{
-            url
-        },
-        success:data => {
-            console.log(data);
-        },
-        error:e => {
-            console.log(e);
-        },
-        complete:data =>{
-        }
-    })
-
-    return;
+    
     const link = $('.tagging_url').val();
     if (!isYoutubeLink(link)) {
-        const backdropHeight = $(document).height();
-        $('#backdrop').css('height', backdropHeight);
-        $('#backdrop').fadeIn(100, function() {
-            showErrorBox('유튜브 링크가 올바르지 않습니다.');
-            $('.error_box').fadeIn(300);
-        });
+        showErrorLink();
         return;
     }
 
+    const param = getParameter(url);
+    if (!param.v) {
+        showErrorLink();
+        return;
+    }
+
+    isRegisterData(param.v, data => {
+        if (data) {
+            showCompleteTagging(data.data_id);
+        } else {
+            showStartTagging();
+        }
+    });
+    return;
+
+
+
+    
+}
+
+const showCompleteTagging = (data_id) => {
+    const target = $('#tagging_detail');
+    moveTargetSlide(target);
+    target.css('height','936px');
+    target.css('transition','all 1.2s ease-in-out');
+    setTimeout(()=>{
+        $('.btn_start').text('분석완료');
+        $('.btn_start').css('background-color', '#0a4623');
+        $('#loading-text').text('분석완료');
+        $('.tagging_url').prop('readonly', true);
+        },500);
+        setTimeout(() => {
+                const finalComment = `
+                                                <div class="final_comment animated fadeIn" id="final_comment">
+                                                    결과 화면으로 전환 됩니다 👏
+                                                </div>`
+                $('#tagging_detail .main').html(finalComment);
+                
+                setTimeout(() => {
+                    location.href=`/category/detail/${data_id}`;
+                }, 2000);
+            }, 2500);
+}
+
+const showStartTagging = () => {
     const target = $('#tagging_detail');
     showTimer(target);
     showSimple();
+}
+
+const isRegisterData = (key, callback) => {
+    $.ajax({
+        type : 'POST',
+        url : '/rest/is_register_data',
+        data: {
+            key
+        },
+        success : data => {
+            console.log(data);
+            callback(data[0]);
+        },
+        error : e => {},
+        complete : data => {}
+    });
+}
+
+const showErrorLink = () => {
+    const backdropHeight = $(document).height();
+    $('#backdrop').css('height', backdropHeight);
+    $('#backdrop').fadeIn(100, function() {
+        showErrorBox('유튜브 링크가 올바르지 않습니다.');
+        $('.error_box').fadeIn(300);
+    });
 }
 
 const getParameter = (url) => {

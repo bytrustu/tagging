@@ -128,3 +128,54 @@ module.exports.categoryList = function(callback){
 		}
 	});
 };
+
+
+
+module.exports.isRegisterData = function(key, callback){
+	db_pool.getConnection(function(err, db){
+		try{
+			if (err){
+				callback(false);
+			} else {
+				db.beginTransaction(function(err){
+					if (err){
+						db.rollback();
+						callback(false);
+					} else {
+						var result = {};
+						async.series([
+							function(cb) {
+								const query = `select  data_id from DataCollection where unique_id = ?`;
+								const query_list = [key];
+
+								db.query(query, query_list, function(err, data){
+									if(err){
+										db.rollback();
+										callback(false);
+									} else {
+										result.data = data;
+										cb(null, null);
+									}
+								});
+							},
+							function(cb) {
+								db.commit(function (err) {
+				                    if (err) {
+				                    	db.rollback();
+				                    	callback(false);
+				                    } else {
+				                    	cb(null, null);
+				                    }
+				                });
+						}],
+						function(err, data) {
+							callback(result);
+						});
+					}
+				});
+			}
+		}catch(e){}finally{
+			db.release();
+		}
+	});
+};

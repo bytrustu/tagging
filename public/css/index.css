@@ -978,7 +978,7 @@ footer .sub-footer span {
 }
 
 
-#tagging_detail .sub .final_comment {
+#tagging_detail .final_comment {
     position: absolute;
     transform: translate(-50%, -30%);
     left: 50%;

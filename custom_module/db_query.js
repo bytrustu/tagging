@@ -145,7 +145,9 @@ module.exports.isRegisterData = function(key, callback){
 						var result = {};
 						async.series([
 							function(cb) {
-								const query = `select  data_id from DataCollection where unique_id = ?`;
+								const query = `select DataCollection.data_id from DataCollection 
+												inner join DataCategory on DataCollection.data_id = DataCategory.data_id 
+												where DataCollection.unique_id = ?;`;
 								const query_list = [key];
 
 								db.query(query, query_list, function(err, data){
@@ -171,6 +173,64 @@ module.exports.isRegisterData = function(key, callback){
 						function(err, data) {
 							callback(result);
 						});
+					}
+				});
+			}
+		}catch(e){}finally{
+			db.release();
+		}
+	});
+};
+
+
+module.exports.isCompleteStep1 = function(url, callback){
+	db_pool.getConnection(function(err, db){
+		try{
+			if (err){
+				callback(0);
+			} else {
+				const query = `select 
+								data_id
+								, unique_id
+								, name, channel
+								, regist_date
+								, title
+								, text
+								, thumbnail
+								, url
+								, create_date 
+							from DataCollection
+							where unique_id = ?;`
+				const query_list = [url];
+				db.query(query, query_list, function(err, data) {
+					if (err) {
+						callback(false);
+					} else {
+						callback(data)
+					}
+				});
+			}
+		}catch(e){}finally{
+			db.release();
+		}
+	});
+};
+
+
+module.exports.isCompleteStep2 = function(data_id, callback){
+	db_pool.getConnection(function(err, db){
+		try{
+			if (err){
+				callback(0);
+			} else {
+				const query = `select count(*) count from DataCategory where data_id = ?;`
+				const query_list = [data_id];
+				db.query(query, query_list, function(err, data) {
+					console.log(err, data);
+					if (err) {
+						callback(false);
+					} else {
+						callback(data)
 					}
 				});
 			}

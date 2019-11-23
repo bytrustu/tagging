@@ -38,3 +38,34 @@ module.exports.is_register_data = function(req, res){
 		}
 	});
 };
+
+module.exports.is_complete_step1 = function(req, res){
+	const {url} = req.body;
+	if (!url) {
+		send(res, 404);
+		return;
+	}
+	db_.isCompleteStep1(url, function(data){
+		if (data) {
+			send(res, 200, data);
+		} else {
+			send(res, 404);
+		}
+	});
+};
+
+
+module.exports.is_complete_step2 = function(req, res){
+	const {data_id} = req.body;
+	if (!data_id) {
+		send(res, 404);
+		return;
+	}
+	db_.isCompleteStep2(data_id, function(data){
+		if (data) {
+			send(res, 200, data);
+		} else {
+			send(res, 404);
+		}
+	});
+};

@@ -1,6 +1,30 @@
 let passWidth;
 let timerInterval;
 let mainDic = {};
+let step1Interval;
+let step2Interval;
+
+Date.prototype.format = function(f) {
+    if (!this.valueOf()) return " ";
+    const weekName = ["SUN", "MON", "TUES", "WED", "THURS", "FRI", "SAT"];
+    const d = this;
+
+    return f.replace(/(yyyy|yy|MM|dd|E|hh|mm|ss|a\/p)/gi, ($1) => {
+        switch ($1) {
+            case "yyyy": return d.getFullYear();
+            case "yy": return (d.getFullYear() % 1000).zf(2);
+            case "MM": return (d.getMonth() + 1).zf(2);
+            case "dd": return d.getDate().zf(2);
+            case "E": return weekName[d.getDay()];
+            case "HH": return d.getHours().zf(2);
+            case "hh": return ((h = d.getHours() % 12) ? h : 12).zf(2);
+            case "mm": return d.getMinutes().zf(2);
+            case "ss": return d.getSeconds().zf(2);
+            case "a/p": return d.getHours() < 12 ? "AM" : "PM";
+            default: return $1;
+        }
+    });
+};
 
 $(document).ready(function(){
 
@@ -49,6 +73,16 @@ $(document).ready(function(){
     });
 });
 
+const convertDate = (d, isKr) => {
+	if (!d || isNaN(d)) return "";
+	if (!isKr) {
+		return d.format("yyyy-MM-dd");
+	} else {
+		const arr = d.format("yyyy-MM-dd").split('-');
+		return `${arr[0]}년 ${arr[1]}월 ${arr[2]}일`;
+	}
+};
+
 
 const changeItemListStyle = (element, direction) => {
     const itemSize = passWidth !== -415 ? $(element).find('.item').length : parseInt($(element).find('.item').length/4 + 1);
@@ -91,10 +125,6 @@ const activeTagging = () => {
         }
     });
     return;
-
-
-
-    
 }
 
 const showCompleteTagging = (data_id) => {
@@ -184,26 +214,73 @@ const closeErrorBox = () => {
 const showStartTagging = (url) => {
     const target = $('#tagging_detail');
     showTimer(target);
-    requestTagging(url, data => {
-
-    });
+    requestTagging(url);
+    step1Interval = setInterval(()=>{
+        isCompleteStep1(url, data => {
+            if (data.length) {
+                clearInterval(step1Interval);
+                console.log('stop step1');
+                showSimple(data[0]);
+                step2Interval = setInterval(()=>{
+                    isCompleteStep2(data[0].data_id, result => {
+                        if (result[0].count == 1) {
+                            console.log('stop step2');
+                            clearInterval(step2Interval);
+                            timerOut(data[0].data_id);
+                        }
+                    });
+                },3000)
+            }
+        });
+    },3000);
     return;
-    showSimple();
+    
 }
 
-const requestTagging = (url, callback) => {
+const requestTagging = (url) => {
     $.ajax({
         type : 'POST',
-        url : 'http://133.186.211.106:8888/active_process',
+        url : 'http://localhost:7777/active_process',
+        data : {
+            url
+        },
+        success : data => {},
+        error : e => {},
+        complete : data => {}
+    });
+}
+
+const isCompleteStep1 = (url, callback) => {
+    $.ajax({
+        type : 'POST',
+        url : '/rest/is_complete_step1',
         data : {
             url
         },
         success : data => {
-            console.log(data);
+            console.log(`step1 >>>>>>>`,data);
             callback(data);
         },
         error : e => {},
-        complete : data => {}
+        complete : data => {
+        }
+    });
+}
+
+const isCompleteStep2 = (data_id, callback) => {
+    $.ajax({
+        type : 'POST',
+        url : '/rest/is_complete_step2',
+        data : {
+            data_id
+        },
+        success : data => {
+            console.log(`step2 >>>>>>>`,data);
+            callback(data);
+        },
+        error : e => {},
+        complete : data => {
+        }
     });
 }
 
@@ -217,6 +294,8 @@ const showTimer = (target) => {
         $('#loading-text').text('분석중');
         $('.tagging_url').prop('readonly', true);
         },500);
+
+        
     
     setTimeout(()=>{
         const timer = `<div class="detail_timer animated fadeIn">
@@ -230,27 +309,27 @@ const showTimer = (target) => {
             timerElement.attr('data-time',sec+1);
             timerElement.text(drawTime(sec));
             if (sec === 10) {
-                timerOut();
+                // timerOut();
             }
         },1000);
     },1800);
 }
 
-const showSimple = () => {
+const showSimple = (data) => {
     setTimeout(()=>{
         if ($(window).width() <= 416) {
             $('.detail_simple ')
         }
         const simple = `<div class="detail_simple">
-                            <div class="left animated fadeIn d-none" data-link="https://www.youtube.com/watch?v=UknkihjVwWw">
+                            <div class="left animated fadeIn d-none" data-link="${data.url}">
                                 <img class="ico_youtube" src="/images/tagging/youtube_1.png">
-                                <img class="img_youtube" src="/images/tagging/cogi.png">
+                                <img class="img_youtube" src="${data.thumbnail}">
                             </div>
                             <div class="right animated fadeIn d-none">
-                                <p>아리가 코기 천국에 상륙했습니다. ㅣ 8마리 웰시코기와 끝내주는 여름나기</p>
-                                <p>조회수 759,319회•2019. 6. 5.</p>
-                                <p>아리둥절 Ari the Corgi</p>
-                                <p>얼마전 8코기네에 소풍다녀왔어요~ :)</p>
+                                <p>📌 ${substringStr(data.title, 30)}</p>
+                                <p>🔖 ${substringStr(data.text, 30)}</p>
+                                <p>👨‍💻 ${data.name}</p>
+                                <p>📆 ${data.regist_date.substring(0,10) || "알수없음"}</p>
                             </div>
                         </div>`;
         $('#tagging_detail .container').append(simple);
@@ -258,7 +337,7 @@ const showSimple = () => {
         setTimeout(()=>{
             simpleElement.css('height','460px');
             simpleElement.css('transition','all 2s ease-in-out');
-        },2000)
+        },1000)
         setTimeout(()=>{
             if ($(window).width() <= 416) {
                 simpleElement.addClass('mobile');
@@ -295,7 +374,7 @@ const drawTime = (second) => {
     return `${calcStr(min)}:${calcStr(sec)}`;
 }
 
-const timerOut = () => {
+const timerOut = (data_id) => {
     clearInterval(timerInterval);
     $('#loading-text').text('분석완료');
     let outInterval;
@@ -326,7 +405,7 @@ const timerOut = () => {
                 $('#tagging_detail .sub').html(finalComment);
                 
                 setTimeout(() => {
-                    location.href="/category/detail/91";
+                    location.href=`/category/detail/${data_id}`;
                 },1000);
             }, 1000);
 

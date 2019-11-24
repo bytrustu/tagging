@@ -239,3 +239,48 @@ module.exports.isCompleteStep2 = function(data_id, callback){
 		}
 	});
 };
+
+module.exports.getUrl = function(data_id, callback){
+	db_pool.getConnection(function(err, db){
+		try{
+			if (err){
+				callback(0);
+			} else {
+				const query = `select unique_id from DataCollection where data_id = ?;`
+				const query_list = [data_id];
+				db.query(query, query_list, function(err, data) {
+					if (err) {
+						callback(false);
+					} else {
+						callback(data[0].unique_id)
+					}
+				});
+			}
+		}catch(e){}finally{
+			db.release();
+		}
+	});
+};
+
+module.exports.getKeyword = function(data_id, callback){
+	db_pool.getConnection(function(err, db){
+		try{
+			if (err){
+				callback(0);
+			} else {
+				const query = `select word_name as text, word_frequency as frequency  from DataWord where data_id = ? 
+								order by word_frequency desc limit 20;`
+				const query_list = [data_id];
+				db.query(query, query_list, function(err, data) {
+					if (err) {
+						callback(false);
+					} else {
+						callback(data)
+					}
+				});
+			}
+		}catch(e){}finally{
+			db.release();
+		}
+	});
+};

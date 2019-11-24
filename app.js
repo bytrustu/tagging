@@ -50,6 +50,8 @@ app.post('/rest/is_register_data', restful.is_register_data);
 app.post('/rest/is_complete_step1', restful.is_complete_step1);
 app.post('/rest/is_complete_step2', restful.is_complete_step2);
 
+app.post('/rest/make_coludword', restful.make_coludword);
+
 
 http.createServer(app).listen(app.get('port'), '0.0.0.0', function(){
 	console.log("Https server listening on port " + app.get('port'));

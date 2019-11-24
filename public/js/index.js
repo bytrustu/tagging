@@ -226,7 +226,11 @@ const showStartTagging = (url) => {
                         if (result[0].count == 1) {
                             console.log('stop step2');
                             clearInterval(step2Interval);
-                            timerOut(data[0].data_id);
+                            makeColudWord(data[0].data_id, complete => {
+                                if (complete) {
+                                    timerOut(data[0].data_id);
+                                }
+                            });
                         }
                     });
                 },3000)
@@ -281,6 +285,21 @@ const isCompleteStep2 = (data_id, callback) => {
         error : e => {},
         complete : data => {
         }
+    });
+}
+
+const makeColudWord = (data_id, callback) => {
+    $.ajax({
+        type : 'POST',
+        url : '/rest/make_coludword',
+        data : {
+            data_id
+        },
+        success : data => {
+            callback(data);
+        },
+        error : e => {},
+        complete : data => {}
     });
 }
 

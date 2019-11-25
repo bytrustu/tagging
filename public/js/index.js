@@ -433,26 +433,26 @@ const timerOut = (data_id) => {
     },2000)
 }
 
-const createWordCloud = () => {
+const createWordCloud = (key) => {
     var width = 700,
     height = 354
 
     var svg = d3.select(".word_cloud").append("svg")
         .attr("width", width)
         .attr("height", height);
-    d3.csv("/csv/worddata.csv", function (data) {
-        showCloud(data)
+        d3.csv(`/csv/${key}.csv`, function (data) {
+        var keywords = [data[0].text, data[1].text, data[2].text, data[3].text]
+        showCloud(data, keywords)
         setInterval(function(){
-            showCloud(data)
+            showCloud(data, keywords)
         },3000) 
     });
     wordScale = d3.scale.linear().domain([0, 100]).range([0, 150]).clamp(true);
-    var keywords = ["자리야", "트레이서", "한조", "라인하르트"]
     var svg = d3.select("svg")
                 .append("g")
                 .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
 
-    function showCloud(data) {
+    function showCloud(data, keywords) {
         d3.layout.cloud().size([width, height])
             .words(data)
             .rotate(function (d) {

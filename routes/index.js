@@ -3,6 +3,7 @@ var url = require("url");
 var xss = require("xss");
 var func = require("./../custom_module/func.js");
 var db_ = require("./../custom_module/db_query.js");
+const restful = require("./restful.js");
 
 
 function send(res, code, data) {
@@ -24,7 +25,15 @@ exports.category = (req, res) => {
 };
 
 exports.detail = (req, res) => {
-	res.render('detail');
+	const no = req.params.no;
+	db_.getDetail(no, function(data){
+		restful.makeCSV(no, result => {
+			console.log(result);
+			res.render('detail', data);
+		});;
+		
+	});
+	
 };
 
 exports.statistics = (req, res) => {

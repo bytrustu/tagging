@@ -112,9 +112,49 @@ module.exports.make_coludword = function(req, res){
 			send(res, 404);
 		}
 	});
-
-
 	
+};
 
-	
+
+module.exports.getDetail = function(req, res){
+	const no = req.params.no;
+	db_.getDetail(no, function(data){
+		if (data) {
+			send(res, 200, data);
+		} else {
+			send(res, 404);
+		}
+	});
+};
+
+module.exports.makeCSV = function(no, callback){
+	db_.getUrl(no, function(url){
+		if (url) {
+			let isFile;
+			console.log(url);
+			try {
+				fs.statSync(`${__dirname}/../public/csv/${url}.csv`);
+				isFile = true;
+			} catch (err) {
+				if (err.code === 'ENOENT') {
+					isFile = false;
+				}
+			}
+			if (!isFile) {
+				db_.getKeyword(no, function(data){
+					if (data) {
+						console.log(data);
+						makeCSV(data, url);
+						callback(true);
+					} else {
+						callback(false);
+					}
+				});
+			} else {
+				callback(true);
+			}
+		} else {
+			callback(false);
+		}
+	});
 };

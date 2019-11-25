@@ -10,28 +10,28 @@
 				<div class="detail_top">
                     <div class="detail_left">
                         <div class="tag">
-                            # 게임
+                            # <%= data.cat_name %>
                         </div>
                         <div class="youtube">
-                            <iframe width="580" height="250" src="https://www.youtube.com/embed/UknkihjVwWw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="580" height="250" src="https://www.youtube.com/embed/<%=data.unique_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                         <div class="thumbnail_warp">
-                            <img src="/images/index/test1.png">
-                            <img src="/images/index/test1.png">
-                            <img src="/images/index/test1.png">
-                            <img src="/images/index/test1.png">
+                            <img src="<%= image[0].img_name %>">
+                            <img src="<%= image[1].img_name %>">
+                            <img src="<%= image[2].img_name %>">
+                            <img src="<%= image[3].img_name %>">
                         </div>
                     </div>
                     <div class="detail_right">
                         <div class="detail_step">
                             <div class="num">1</div>
                             <span class="detail_title">링　&nbsp;&nbsp;&nbsp;크　:　</span>
-                            <a class="detail_text" href="https://www.youtube.com/watch?v=UknkihjVwWw" target="_blank">https://www.youtube.com/watch?v=UknkihjVwWw</a>
+                            <a class="detail_text" href="<%= data.url %>" target="_blank"><%= data.url %></a>
                         </div>
                         <div class="detail_step">
                             <div class="num">2</div>
                             <span class="detail_title">분석&nbsp;&nbsp;일시　:　</span>
-                            <span class="detail_text">2019-11-01</span>
+                            <span class="detail_text"><%= new Date(data.create_date) %></span>
                         </div>
                         <div class="detail_step">
                             <div class="num">3</div>
@@ -46,7 +46,7 @@
                         <div class="detail_step">
                             <div class="num">5</div>
                             <span class="detail_title">분석키워드　:　</span>
-                            <span class="detail_text">300개</span>
+                            <span class="detail_text"><%= data.word_count %>개</span>
                         </div>
                         <div class="detail_step">
                             <div class="num">6</div>
@@ -97,7 +97,7 @@
     <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
     <%- partial('layout/layout_script.ejs') %>
     <script>
-        createWordCloud();
+        createWordCloud('<%= data.unique_id %>');
         createKeywordChart();
     </script>
     

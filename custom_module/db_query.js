@@ -284,3 +284,84 @@ module.exports.getKeyword = function(data_id, callback){
 		}
 	});
 };
+
+
+module.exports.getDetail = function(no, callback){
+	db_pool.getConnection(function(err, db){
+		try{
+			if (err){
+				callback(false);
+			} else {
+				db.beginTransaction(function(err){
+					if (err){
+						db.rollback();
+						callback(false);
+					} else {
+						var result = {};
+						async.series([
+							function(cb) {
+								const query = `select 
+												DataCollection.data_id
+												, DataCollection.unique_id
+												, DataCollection.name
+												, DataCollection.regist_date
+												, DataCollection.title
+												, DataCollection.text
+												, DataCollection.timedtext
+												, DataCollection.thumbnail
+												, DataCollection.url
+												, DataCollection.create_date
+												, DataWord.word_count 
+												, DataCategory.cat_name
+											from DataCollection
+											left join ( select data_id, count(*) word_count from DataWord group by data_id ) DataWord 
+											on DataCollection.data_id = DataWord.data_id
+											left join DataCategory on DataCollection.data_id = DataCategory.data_id
+											where DataCollection.data_id = ?;`;
+								const query_list = [no];
+
+								db.query(query, query_list, function(err, data){
+									if(err){
+										db.rollback();
+										callback(false);
+									} else {
+										result.data = data[0];
+										cb(null, null);
+									}
+								});
+							},
+							function(cb) {
+								const query = `select img_id, img_name, create_date from DataImage where data_id = ?;`;
+								const query_list = [no];
+
+								db.query(query, query_list, function(err, data){
+									if(err){
+										db.rollback();
+										callback(false);
+									} else {
+										result.image = data;
+										cb(null, null);
+									}
+								});
+							},
+							function(cb) {
+								db.commit(function (err) {
+				                    if (err) {
+				                    	db.rollback();
+				                    	callback(false);
+				                    } else {
+				                    	cb(null, null);
+				                    }
+				                });
+						}],
+						function(err, data) {
+							callback(result);
+						});
+					}
+				});
+			}
+		}catch(e){}finally{
+			db.release();
+		}
+	});
+};

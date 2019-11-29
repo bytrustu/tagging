@@ -494,37 +494,43 @@ const createWordCloud = (key) => {
 }
 
 
-const createKeywordChart = () => {
+const createKeywordChart = (data_id) => {
     
-    var container = document.getElementById('chart-area');
-    var data = {
+    const getKeyword = (data_id, callback) => {
+        $.ajax({
+            type : 'GET',
+            url : `/rest/get_keyword/${data_id}`,
+            success : data => {
+                callback(data);
+            },
+            error : e => {},
+            complete : data => {}
+        });
+    }
+    console.log(data_id);
+
+    getKeyword(data_id, data => {
+
+        const dataSet = [];
+        const limit = 6;
+
+        data.map((v,i) => {
+            if (i>limit) return;
+            dataSet.push({name:v.text,data:v.frequency});
+        });
+        const keyword_html = dataSet.map((v,i) => {
+                                                                            if (i>limit) return;
+                                                                            return `<span># ${v.name}</span>`;
+                                                                        })
+                                                        .reduce((a,b) => a+b);
+        $('.keyword_warp').html(keyword_html)
+
+
+
+        var container = document.getElementById('chart-area');
+        var data = {
         categories: ['Browser'],
-        series: [
-            {
-                name: 'Chrome',
-                data: 46.02
-            },
-            {
-                name: 'IE',
-                data: 20.47
-            },
-            {
-                name: 'Firefox',
-                data: 17.71
-            },
-            {
-                name: 'Safari',
-                data: 5.45
-            },
-            {
-                name: 'Opera',
-                data: 3.10
-            },
-            {
-                name: 'Etc',
-                data: 7.25
-            }
-        ]
+        series: dataSet
     };
     var options = {
         chart: {
@@ -560,13 +566,14 @@ const createKeywordChart = () => {
             }
           }
     };
-
-    // For apply theme
-
     tui.chart.registerTheme('myTheme', theme);
     options.theme = 'myTheme';
 
     tui.chart.pieChart(container, data, options);
+
+    });
+    
+    
 
 }
 

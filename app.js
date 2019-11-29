@@ -51,6 +51,7 @@ app.post('/rest/is_complete_step1', restful.is_complete_step1);
 app.post('/rest/is_complete_step2', restful.is_complete_step2);
 
 app.post('/rest/make_coludword', restful.make_coludword);
+app.get('/rest/get_keyword/:data_id', restful.get_keyword);
 
 
 http.createServer(app).listen(app.get('port'), '0.0.0.0', function(){

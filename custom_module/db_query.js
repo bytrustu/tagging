@@ -268,8 +268,9 @@ module.exports.getKeyword = function(data_id, callback){
 			if (err){
 				callback(0);
 			} else {
-				const query = `select word_name as text, word_frequency as frequency  from DataWord where data_id = ? 
-								order by word_frequency desc limit 20;`
+				const query = `select word as text, scroe as frequency from DataResult
+										where data_id = ?
+										order by score desc limit 20;`
 				const query_list = [data_id];
 				db.query(query, query_list, function(err, data) {
 					if (err) {

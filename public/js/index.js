@@ -236,11 +236,12 @@ const showStartTagging = (url) => {
                         if (result[0].count == 1) {
                             console.log('stop step2');
                             clearInterval(step2Interval);
-                            makeColudWord(data[0].data_id, complete => {
-                                if (complete) {
-                                    timerOut(data[0].data_id);
-                                }
-                            });
+                            timerOut(data[0].data_id);
+                            // makeColudWord(data[0].data_id, complete => {
+                            //     if (complete) {
+                                    
+                            //     }
+                            // });
                         }
                     });
                 },3000)

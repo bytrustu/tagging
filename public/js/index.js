@@ -529,7 +529,7 @@ const createKeywordChart = (data_id, category) => {
 
         var container = document.getElementById('chart-area');
         var data = {
-        categories: ['Browser'],
+        categories: [category],
         series: dataSet
     };
     var options = {

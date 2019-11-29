@@ -135,6 +135,18 @@ module.exports.get_keyword = function(req, res){
 	});
 };
 
+module.exports.analysis_result = function(req, res){
+	const data_id = req.params.data_id;
+	db_.analysisResult(data_id, function(data){
+		if (data) {
+			console.log(data);
+			send(res, 200, data);
+		} else {
+			send(res, 404);
+		}
+	});
+};
+
 
 module.exports.getDetail = function(req, res){
 	const no = req.params.no;

@@ -25,6 +25,7 @@ module.exports.categoryList = function(callback){
 											from DataCollection 
 											inner join DataCategory on DataCollection.data_id = DataCategory.data_id
 											where DataCategory.cat_name = ?
+											order by DataCollection.data_id desc
 											limit 100`;
 								const query_list = ['스포츠'];
 
@@ -48,6 +49,7 @@ module.exports.categoryList = function(callback){
 											from DataCollection 
 											inner join DataCategory on DataCollection.data_id = DataCategory.data_id
 											where DataCategory.cat_name = ?
+											order by DataCollection.data_id desc
 											limit 100`;
 								const query_list = ['게임'];
 
@@ -71,6 +73,7 @@ module.exports.categoryList = function(callback){
 											from DataCollection 
 											inner join DataCategory on DataCollection.data_id = DataCategory.data_id
 											where DataCategory.cat_name = ?
+											order by DataCollection.data_id desc
 											limit 100`;
 								const query_list = ['동물'];
 
@@ -94,6 +97,7 @@ module.exports.categoryList = function(callback){
 											from DataCollection 
 											inner join DataCategory on DataCollection.data_id = DataCategory.data_id
 											where DataCategory.cat_name = ?
+											order by DataCollection.data_id desc
 											limit 100`;
 								const query_list = ['음식'];
 
@@ -269,8 +273,8 @@ module.exports.getKeyword = function(data_id, callback){
 				callback(0);
 			} else {
 				const query = `select word as text, score as frequency from DataResult
-										where data_id = ?
-										order by score desc limit 20;`
+								where data_id = ?
+								order by score desc limit 20;`
 				const query_list = [data_id];
 				db.query(query, query_list, function(err, data) {
 					if (err) {
@@ -285,6 +289,32 @@ module.exports.getKeyword = function(data_id, callback){
 		}
 	});
 };
+
+module.exports.analysisResult = function(data_id, callback){
+	db_pool.getConnection(function(err, db){
+		try{
+			if (err){
+				callback(0);
+			} else {
+				const query = `select DataResult.word as text, DataResult.score as total, DataDictionary.score as score, round(DataResult.score/DataDictionary.score) as cnt, DataDictionary.category  from DataResult
+								inner join DataDictionary on DataResult.word = DataDictionary.word
+								where DataResult.data_id = ?
+								order by DataResult.score desc limit 20;`
+				const query_list = [data_id];
+				db.query(query, query_list, function(err, data) {
+					if (err) {
+						callback(false);
+					} else {
+						callback(data)
+					}
+				});
+			}
+		}catch(e){}finally{
+			db.release();
+		}
+	});
+};
+
 
 
 module.exports.getDetail = function(no, callback){

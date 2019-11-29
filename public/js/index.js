@@ -812,3 +812,58 @@ const drawMainItemList = (type,index) => {
     }
     $(`#main_${type}`).html(code);
 }
+
+const showAnalysisResult = (data_id) => {
+    analysisResult(data_id, result => {
+        let max=0;
+        let sportsScore=0;
+        let gameScore=0;
+        let animalScore=0;
+        let foodScore=0;
+        result.map(v => {
+            max += v.score;
+            if (v.category == '운동') {
+                sportsScore += v.score;
+            }
+            if (v.category == '게임') {
+                gameScore += v.score;
+            }
+            if (v.category == '동물') {
+                animalScore += v.score;
+            }
+            if (v.category == '음식') {
+                foodScore += v.score;
+            }
+        });
+        const category_arr = [{category:"운동",score:sportsScore},{category:"게임",score:gameScore},{category:"동물",score:animalScore},{category:"음식",score:foodScore}];
+        category_arr.sort(function(a, b) {
+            return b.score - a.score;
+        });
+        const result_arr = category_arr.filter(v => v.score > 0);
+        const result_html = `<div class="analysis_result">
+                                <div class="result_score">${category_arr[0].score}점 [${((category_arr[0].score*100)/max).toFixed(2)}%]</div>
+                                    ${result_arr.map(v => `<div class="result_element">
+                                                                <p>${v.category}</p>
+                                                                <p>${v.score}점 [${((v.score*100)/max).toFixed(2)}%]<p>
+                                                           </div>`)
+                                                .reduce((a,b) => a+b)}
+                            </div>`;
+        $('.result_warp').html(result_html);
+        
+    });
+}
+
+
+const analysisResult = (data_id, callback) => {
+    $.ajax({
+        type:'GET',
+        url:`/rest/analysis_result/${data_id}`,
+        success: data => {
+            callback(data);
+        },
+        error : e => {
+        },
+        complete: data => {
+        }
+    });
+}

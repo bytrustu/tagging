@@ -2121,6 +2121,43 @@ a.detail_text:hover {
 .statistics_item  .item_list .item .button:nth-of-type(3):hover {
     color: #19833a;
 }
+
+.result_warp {
+
+}
+
+.analysis_result,
+.result_element {
+    display: inline-block;    
+}
+
+.analysis_result {
+
+}
+
+.result_element + .result_element {
+    margin-left: 20px;
+}
+
+.result_score {
+    vertical-align: 22px;
+    padding-top: 6px;
+    margin-bottom: 12px;
+}
+
+.result_element {
+    border: 2px solid #ffffff;
+    border-radius: 3px;
+    width: 150px;
+    padding: 5px 0 0 10px;
+    font-size: 14px;
+}
+.result_element p {
+    margin-bottom: 5px;
+}
+
+
+
 /* 
 .faster {
     animation-delay: 0.1s;

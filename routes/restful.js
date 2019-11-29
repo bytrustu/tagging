@@ -86,7 +86,7 @@ module.exports.make_coludword = function(req, res){
 	db_.getUrl(data_id, function(url){
 		if (url) {
 			let isFile;
-			console.log(url);
+			console.log('>>>>>>>>>>>>>>>>url',url);
 			try {
 				fs.statSync(`${__dirname}/../public/csv/${url}.csv`);
 				isFile = true;

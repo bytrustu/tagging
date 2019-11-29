@@ -97,7 +97,7 @@ module.exports.make_coludword = function(req, res){
 			}
 			if (!isFile) {
 				db_.getKeyword(data_id, function(data){
-					console.log('>>>>>>>>>>>>>>>>data',data);
+					console.log(data_id,'>>>>>>>>>>>>>>>>data',data);
 					data.map((v,i) => {
 						if (i < 5) {
 							data[i]["frequency"] = 60;

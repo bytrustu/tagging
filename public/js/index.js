@@ -441,7 +441,7 @@ const createWordCloud = (key) => {
         .attr("width", width)
         .attr("height", height);
         d3.csv(`/csv/${key}.csv`, function (data) {
-        var keywords = [data[0].text, data[1].text, data[2].text, data[3].text]
+        var keywords = [data[0].text, data[1].text, data[2].text, data[3].text, data[4].text]
         showCloud(data, keywords)
         setInterval(function(){
             showCloud(data, keywords)

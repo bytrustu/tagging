@@ -131,7 +131,6 @@ module.exports.makeCSV = function(no, callback){
 	db_.getUrl(no, function(url){
 		if (url) {
 			let isFile;
-			console.log(url);
 			try {
 				fs.statSync(`${__dirname}/../public/csv/${url}.csv`);
 				isFile = true;
@@ -142,8 +141,16 @@ module.exports.makeCSV = function(no, callback){
 			}
 			if (!isFile) {
 				db_.getKeyword(no, function(data){
+					data.map((v,i) => {
+						if (i < 5) {
+							data[i]["frequency"] = 60;
+						} else if (i < 10) {
+							data[i]["frequency"] = 30;
+						} else {
+							data[i]["frequency"] = 20;
+						}
+					});
 					if (data) {
-						console.log(data);
 						makeCSV(data, url);
 						callback(true);
 					} else {

@@ -494,7 +494,7 @@ const createWordCloud = (key) => {
 }
 
 
-const createKeywordChart = (data_id) => {
+const createKeywordChart = (data_id, category) => {
     
     const getKeyword = (data_id, callback) => {
         $.ajax({

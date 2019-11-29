@@ -98,7 +98,7 @@
     <%- partial('layout/layout_script.ejs') %>
     <script>
         createWordCloud('<%= data.unique_id %>');
-        createKeywordChart(<%= data.data_id %>);
+        createKeywordChart(<%= data.data_id %>, '<%= data.cat_name %>');
     </script>
     
  

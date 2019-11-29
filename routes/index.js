@@ -30,9 +30,7 @@ exports.detail = (req, res) => {
 		data.image.map((v,i) => {
 			data.image[i].img_name = v.img_name.substring(v.img_name.lastIndexOf('/')+1, v.img_name.length);
 		});
-		console.log(data.image)
 		restful.makeCSV(no, result => {
-			console.log(result);
 			res.render('detail', data);
 		});;
 		

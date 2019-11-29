@@ -1,3 +1,8 @@
+
+
+
+
+
 let passWidth;
 let timerInterval;
 let mainDic = {};
@@ -25,6 +30,21 @@ Date.prototype.format = function(f) {
         }
     });
 };
+String.prototype.string = function(len){let s = '', i = 0; while (i++ < len) { s += this; } return s;};
+String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
+Number.prototype.zf = function(len){return this.toString().zf(len);};
+
+// 날짜포맷 변환 ( 년-월-일 )
+const convertDate = (d, isKr) => {
+	if (!d || isNaN(d)) return "";
+	if (!isKr) {
+		return d.format("yyyy-MM-dd");
+	} else {
+		const arr = d.format("yyyy-MM-dd").split('-');
+		return `${arr[0]}년 ${arr[1]}월 ${arr[2]}일`;
+	}
+};
+
 
 $(document).ready(function(){
 
@@ -72,16 +92,6 @@ $(document).ready(function(){
         window.open($('.detail_simple .left').attr('data-link'));
     });
 });
-
-const convertDate = (d, isKr) => {
-	if (!d || isNaN(d)) return "";
-	if (!isKr) {
-		return d.format("yyyy-MM-dd");
-	} else {
-		const arr = d.format("yyyy-MM-dd").split('-');
-		return `${arr[0]}년 ${arr[1]}월 ${arr[2]}일`;
-	}
-};
 
 
 const changeItemListStyle = (element, direction) => {

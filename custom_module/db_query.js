@@ -191,7 +191,7 @@ module.exports.isCompleteStep1 = function(url, callback){
 	db_pool.getConnection(function(err, db){
 		try{
 			if (err){
-				callback(0);
+				callback(false);
 			} else {
 				const query = `select 
 								data_id
@@ -225,12 +225,11 @@ module.exports.isCompleteStep2 = function(data_id, callback){
 	db_pool.getConnection(function(err, db){
 		try{
 			if (err){
-				callback(0);
+				callback(false);
 			} else {
 				const query = `select count(*) count from DataCategory where data_id = ?;`
 				const query_list = [data_id];
 				db.query(query, query_list, function(err, data) {
-					console.log(err, data);
 					if (err) {
 						callback(false);
 					} else {
@@ -248,7 +247,7 @@ module.exports.getUrl = function(data_id, callback){
 	db_pool.getConnection(function(err, db){
 		try{
 			if (err){
-				callback(0);
+				callback(false);
 			} else {
 				const query = `select unique_id from DataCollection where data_id = ?;`
 				const query_list = [data_id];
@@ -270,7 +269,7 @@ module.exports.getKeyword = function(data_id, callback){
 	db_pool.getConnection(function(err, db){
 		try{
 			if (err){
-				callback(0);
+				callback(false);
 			} else {
 				const query = `select word as text, score as frequency from DataResult
 								where data_id = ?
@@ -294,7 +293,7 @@ module.exports.analysisResult = function(data_id, callback){
 	db_pool.getConnection(function(err, db){
 		try{
 			if (err){
-				callback(0);
+				callback(false);
 			} else {
 				const query = `select DataResult.word as text, DataResult.score as total, DataDictionary.score as score, round(DataResult.score/DataDictionary.score) as cnt, DataDictionary.category  from DataResult
 								inner join DataDictionary on DataResult.word = DataDictionary.word
@@ -314,6 +313,34 @@ module.exports.analysisResult = function(data_id, callback){
 		}
 	});
 };
+
+module.exports.getCategoryResult = function(category, callback){
+	db_pool.getConnection(function(err, db){
+		try{
+			if (err){
+				callback(false);
+			} else {
+				const query = `select DataResult.word, sum(DataResult.score) as score, DataCategory.cat_name from DataResult
+								inner join DataCategory on DataResult.data_id = DataCategory.data_id
+								where DataCategory.cat_name = ?
+								group by DataResult.word
+								order by score desc
+								limit 20;`
+				const query_list = [category];
+				db.query(query, query_list, function(err, data) {
+					if (err) {
+						callback(false);
+					} else {
+						callback(data)
+					}
+				});
+			}
+		}catch(e){}finally{
+			db.release();
+		}
+	});
+};
+
 
 
 

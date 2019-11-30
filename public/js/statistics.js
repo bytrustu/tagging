@@ -29,7 +29,6 @@ $(document).ready(function(){
         const type = $(this).parents('.buttons').attr('data-id');
         const no = $(`#main_${type}`).attr('data-no');
         const nextNo = parseInt(no)+3;
-        console.log(nextNo, dataDic[type][nextNo]);
         if (!dataDic[type][nextNo]) return;
         $(`#main_${type}`).attr('data-no', nextNo);
 
@@ -91,19 +90,109 @@ const moveItemLink = (target) => {
     window.open(`/category/detail/${no}`);
 }
 
+const getCategoryResult = (category, callback) => {
+    $.ajax({
+        type:'GET',
+        url:`/rest/get_category_result/${category}`,
+        success:data => {
+            callback(data);
+        },
+        error : e => {},
+        complete : data => {}
+    })
+}
 
 
-const showStatisticsBox = (target) => {
-    const backdropHeight = $(document).height();
-    $('#backdrop').css('height', backdropHeight);
-    const code = `<div class="statistics_box">
-                            <div class="dot"></div>
-                            <div class="dot two"></div>
-                            <div class="button-box" onclick="closeStatisticsBox();"><span>확인</span></div>
-                        </div>`
-    $('body').append(code);
-    $('#backdrop').fadeIn(100, function() {
-        $('.statistics_box').fadeIn(300);
+
+const showStatisticsBox = (category) => {
+    getCategoryResult(category, data => {
+        const backdropHeight = $(document).height();
+        $('#backdrop').css('height', backdropHeight);
+        const left_data = data.filter((v,i) => i<10);
+        const right_data = data.filter((v,i) => i>=10);
+        const dataSet = data.map(v => {return {name:v.word, data:v.score}});
+        const category_icon = category == '스포츠' ? '⚽️' : category == '동물' ? '🐈' : category == '게임' ? '🎮' : '🍛'; 
+        const code = `<div class="statistics_box">
+                        <div class="dot"></div>
+                        <div class="dot two"></div>
+                        <div class="button-box" onclick="closeStatisticsBox();"><span>확인</span></div>
+                        <div class="top">
+                            <div class="statistics_category">
+                                <div class="tag">${category_icon} ${category} 카테고리 분석</div>
+                            </div>
+                            <div class="statistics_detail">
+                                <p>🔎 분석한 링크수 : 20개</p>
+                                <p>🔖 분석한 키워드수 : 3024개</p>
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <div class="left">
+                                <div id="chart-area"></div>
+                            </div>
+                            <div class="right">
+                                <div class="left_warp">
+                                    ${left_data.map((v,i) => `<p><span class="num">${i+1}</span><span class="text">${v.word}</span></p>`)
+                                                .reduce((a,b)=>a+b)}
+                                </div>
+                                <div class="right_warp">
+                                    ${right_data.map((v,i) => `<p><span class="num">${i+10}</span><span class="text">${v.word}</span></p>`)
+                                                .reduce((a,b)=>a+b)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+        $('body').append(code);
+
+
+        
+        var container = document.getElementById('chart-area');
+        var data = {
+            categories: category,
+            series: dataSet
+        };
+        var options = {
+            chart: {
+                width: 400,
+                height: 400,
+            },
+            chartExportMenu: {
+                visible: false,
+            },
+            series: {
+                showLegend: true,
+                showLabel: true,
+                labelAlign: 'outer'
+            },
+            legend: {
+                visible: false
+            }
+        };
+        var theme = {
+            chart : {
+                background : 'transparent'
+            },
+            series: {
+                label: {
+                    color: '#fff',
+                    fontFamily: 'overwatch'
+                },
+                backgroundColor : '#e2e2e2'
+            },
+            legend: {
+                label: {
+                color: '#ffffff'
+                }
+            }
+        };
+        tui.chart.registerTheme('myTheme', theme);
+        options.theme = 'myTheme';
+        tui.chart.pieChart(container, data, options);
+
+        $('#backdrop').fadeIn(100, function() {
+            $('.statistics_box').fadeIn(300);
+        });
+
+
     });
 }
 

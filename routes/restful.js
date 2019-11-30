@@ -86,7 +86,6 @@ module.exports.make_coludword = function(req, res){
 	db_.getUrl(data_id, function(url){
 		if (url) {
 			let isFile;
-			console.log('>>>>>>>>>>>>>>>>url',url);
 			try {
 				fs.statSync(`${__dirname}/../public/csv/${url}.csv`);
 				isFile = true;
@@ -97,7 +96,6 @@ module.exports.make_coludword = function(req, res){
 			}
 			if (!isFile) {
 				db_.getKeyword(data_id, function(data){
-					console.log(data_id,'>>>>>>>>>>>>>>>>data',data);
 					data.map((v,i) => {
 						if (i < 5) {
 							data[i]["frequency"] = 60;
@@ -139,7 +137,17 @@ module.exports.analysis_result = function(req, res){
 	const data_id = req.params.data_id;
 	db_.analysisResult(data_id, function(data){
 		if (data) {
-			console.log(data);
+			send(res, 200, data);
+		} else {
+			send(res, 404);
+		}
+	});
+};
+
+module.exports.get_category_result = function(req, res){
+	const category = req.params.category;
+	db_.getCategoryResult(category, function(data){
+		if (data) {
 			send(res, 200, data);
 		} else {
 			send(res, 404);

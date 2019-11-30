@@ -1,6 +1,5 @@
 $(document).ready(function(){
     showCategoryList('all');
-
     $('.category_btn').on('click', function(){
         if ($(this).hasClass('active')) return;
         const categoryElements = $('.category_btn');
@@ -10,7 +9,6 @@ $(document).ready(function(){
         }
         $(this).addClass('active');
         const cat_id = $(this).attr('data-id');
-        console.log(cat_id);
         showCategoryList(cat_id);
     });
 });

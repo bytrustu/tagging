@@ -54,6 +54,7 @@ app.post('/rest/make_coludword', restful.make_coludword);
 app.get('/rest/get_keyword/:data_id', restful.get_keyword);
 
 app.get('/rest/analysis_result/:data_id', restful.analysis_result);
+app.get('/rest/get_category_result/:category', restful.get_category_result);
 
 
 http.createServer(app).listen(app.get('port'), '0.0.0.0', function(){

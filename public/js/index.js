@@ -166,7 +166,6 @@ const isRegisterData = (key, callback) => {
             key
         },
         success : data => {
-            console.log(data);
             callback(data[0]);
         },
         error : e => {},
@@ -225,12 +224,10 @@ const showStartTagging = (url) => {
         isCompleteStep1(url, data => {
             if (data.length) {
                 clearInterval(step1Interval);
-                console.log('stop step1');
                 showSimple(data[0]);
                 step2Interval = setInterval(()=>{
                     isCompleteStep2(data[0].data_id, result => {
                         if (result[0].count == 1) {
-                            console.log('stop step2');
                             clearInterval(step2Interval);
                             timerOut(data[0].data_id);
                             // makeColudWord(data[0].data_id, complete => {
@@ -269,7 +266,6 @@ const isCompleteStep1 = (url, callback) => {
             url
         },
         success : data => {
-            console.log(`step1 >>>>>>>`,data);
             callback(data);
         },
         error : e => {},
@@ -286,7 +282,6 @@ const isCompleteStep2 = (data_id, callback) => {
             data_id
         },
         success : data => {
-            console.log(`step2 >>>>>>>`,data);
             callback(data);
         },
         error : e => {},
@@ -514,7 +509,6 @@ const createKeywordChart = (data_id, category) => {
             complete : data => {}
         });
     }
-    console.log(data_id);
 
     getKeyword(data_id, data => {
 
@@ -819,7 +813,7 @@ const showAnalysisResult = (data_id) => {
         let foodScore=0;
         result.map(v => {
             max += v.score;
-            if (v.category == '운동') {
+            if (v.category == '스포츠') {
                 sportsScore += v.score;
             }
             if (v.category == '게임') {
@@ -832,11 +826,10 @@ const showAnalysisResult = (data_id) => {
                 foodScore += v.score;
             }
         });
-        const category_arr = [{category:"운동",score:sportsScore},{category:"게임",score:gameScore},{category:"동물",score:animalScore},{category:"음식",score:foodScore}];
+        const category_arr = [{category:"스포츠",score:sportsScore},{category:"게임",score:gameScore},{category:"동물",score:animalScore},{category:"음식",score:foodScore}];
         category_arr.sort(function(a, b) {
             return b.score - a.score;
         });
-        console.log(result);
         const result_arr = category_arr.filter(v => v.score > 0);
         const result_html = `<div class="analysis_result">
                                 <div class="analysis_warp">

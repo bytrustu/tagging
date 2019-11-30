@@ -1535,7 +1535,7 @@ footer .sub-footer span {
 
 #headline.detail .container .detail_top {
     width: 100%;
-    height: calc(50% + 54px);
+    height: calc(50% + 70px);
     padding-top: 54px;
 }
 
@@ -1570,7 +1570,7 @@ footer .sub-footer span {
 }
 
 #headline.detail .container .detail_top .detail_right {
-    padding-top: 85px;
+    padding-top: 70px;
     padding-left: 100px;
 }
 
@@ -2123,7 +2123,7 @@ a.detail_text:hover {
 }
 
 .result_warp {
-
+    vertical-align: top !important;
 }
 
 .analysis_result,
@@ -2133,6 +2133,41 @@ a.detail_text:hover {
 
 .analysis_result {
 
+}
+
+.analysis_warp {
+    margin-bottom: 10px;
+}
+
+.score_detail {
+    font-size: 14px;
+    width: 600px;
+}
+
+.score_detail > .score_element {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+
+.score_detail > .score_element > .score_num {
+    color: #ffffff;
+}
+
+.score_detail > .score_element > .score_etc {
+    color: #f28b8c;
+    font-weight: bold;
+}
+
+.result_element {
+    cursor: pointer;
+}
+
+.result_element:hover,
+.result_element.active {
+    background-color: #ffffff;
+    color: #004612bf;
+    font-weight: bold;
 }
 
 .result_element + .result_element {

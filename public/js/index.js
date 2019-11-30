@@ -1,13 +1,9 @@
-
-
-
-
-
 let passWidth;
 let timerInterval;
 let mainDic = {};
 let step1Interval;
 let step2Interval;
+let resultList;
 
 Date.prototype.format = function(f) {
     if (!this.valueOf()) return " ";
@@ -815,6 +811,7 @@ const drawMainItemList = (type,index) => {
 
 const showAnalysisResult = (data_id) => {
     analysisResult(data_id, result => {
+        resultList = result;
         let max=0;
         let sportsScore=0;
         let gameScore=0;
@@ -839,18 +836,41 @@ const showAnalysisResult = (data_id) => {
         category_arr.sort(function(a, b) {
             return b.score - a.score;
         });
+        console.log(result);
         const result_arr = category_arr.filter(v => v.score > 0);
         const result_html = `<div class="analysis_result">
-                                <div class="result_score">${category_arr[0].score}점 [${((category_arr[0].score*100)/max).toFixed(2)}%]</div>
-                                    ${result_arr.map(v => `<div class="result_element">
+                                <div class="analysis_warp">
+                                    ${result_arr.map(v => `<div class="result_element" onclick="showResultDetail('${v.category}');" data-category="${v.category}" data-result="${JSON.stringify(result.filter(r => r.category == v.category))}">
                                                                 <p>${v.category}</p>
                                                                 <p>${v.score}점 [${((v.score*100)/max).toFixed(2)}%]<p>
                                                            </div>`)
                                                 .reduce((a,b) => a+b)}
+                                </div>
+                                <div class="score_detail">
+                                </div>
                             </div>`;
+        const total_html = `${category_arr[0].score}점 [${((category_arr[0].score*100)/max).toFixed(2)}%]`;
         $('.result_warp').html(result_html);
-        
+        $('.detail_score').html(total_html);
+        showResultDetail(result_arr[0].category);
     });
+}
+
+const showResultDetail = (category) => {
+    const result_list = $('.result_element');
+    for (const element of result_list) {
+        $(element).removeClass('active');
+        if ($(element).attr('data-category') == category) {
+            $(element).addClass('active');
+            const list = resultList.filter(v => v.category == category);
+            const list_html = list.map(v => `<div class="score_element">
+                                                <span class="score_num">🔖${v.text}[${v.total}]:${v.score}점</span><span class="score_etc">x${v.cnt}</span>
+                                            </div>`)
+                                  .reduce((a,b) => a+b);
+            $('.score_detail').html(list_html)
+            
+        }
+    }
 }
 
 

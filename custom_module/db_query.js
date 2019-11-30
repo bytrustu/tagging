@@ -289,6 +289,91 @@ module.exports.getKeyword = function(data_id, callback){
 	});
 };
 
+
+module.exports.getCategoryResult = function(category, callback){
+	db_pool.getConnection(function(err, db){
+		try{
+			if (err){
+				callback(false);
+			} else {
+				db.beginTransaction(function(err){
+					if (err){
+						db.rollback();
+						callback(false);
+					} else {
+						var result = {};
+						async.series([
+							function(cb) {
+								const query = `select DataResult.word, sum(DataResult.score) as score, DataCategory.cat_name from DataResult
+												inner join DataCategory on DataResult.data_id = DataCategory.data_id
+												where DataCategory.cat_name = ?
+												group by DataResult.word
+												order by score desc
+												limit 20;`
+				const query_list = [category];
+
+								db.query(query, query_list, function(err, data){
+									if(err){
+										db.rollback();
+										callback(false);
+									} else {
+										result.info = data;
+										cb(null, null);
+									}
+								});
+							},
+							function(cb) {
+								const query = `select count(*) as cat_count from DataCategory where cat_name = ?;`;
+								const query_list = [category];
+
+								db.query(query, query_list, function(err, data){
+									if(err){
+										db.rollback();
+										callback(false);
+									} else {
+										result.category = data;
+										cb(null, null);
+									}
+								});
+							},
+							function(cb) {
+								const query = `select count(*) as word_count from DataWord
+												inner join DataCategory on DataCategory.data_id = DataWord.data_id
+												where DataCategory.cat_name = ?;`;
+								const query_list = [category];
+
+								db.query(query, query_list, function(err, data){
+									if(err){
+										db.rollback();
+										callback(false);
+									} else {
+										result.word = data;
+										cb(null, null);
+									}
+								});
+							},
+							function(cb) {
+								db.commit(function (err) {
+				                    if (err) {
+				                    	db.rollback();
+				                    	callback(false);
+				                    } else {
+				                    	cb(null, null);
+				                    }
+				                });
+						}],
+						function(err, data) {
+							callback(result);
+						});
+					}
+				});
+			}
+		}catch(e){}finally{
+			db.release();
+		}
+	});
+};
+
 module.exports.analysisResult = function(data_id, callback){
 	db_pool.getConnection(function(err, db){
 		try{
@@ -313,35 +398,6 @@ module.exports.analysisResult = function(data_id, callback){
 		}
 	});
 };
-
-module.exports.getCategoryResult = function(category, callback){
-	db_pool.getConnection(function(err, db){
-		try{
-			if (err){
-				callback(false);
-			} else {
-				const query = `select DataResult.word, sum(DataResult.score) as score, DataCategory.cat_name from DataResult
-								inner join DataCategory on DataResult.data_id = DataCategory.data_id
-								where DataCategory.cat_name = ?
-								group by DataResult.word
-								order by score desc
-								limit 20;`
-				const query_list = [category];
-				db.query(query, query_list, function(err, data) {
-					if (err) {
-						callback(false);
-					} else {
-						callback(data)
-					}
-				});
-			}
-		}catch(e){}finally{
-			db.release();
-		}
-	});
-};
-
-
 
 
 module.exports.getDetail = function(no, callback){

@@ -106,11 +106,12 @@ const getCategoryResult = (category, callback) => {
 
 const showStatisticsBox = (category) => {
     getCategoryResult(category, data => {
+        console.log(data);
         const backdropHeight = $(document).height();
         $('#backdrop').css('height', backdropHeight);
-        const left_data = data.filter((v,i) => i<10);
-        const right_data = data.filter((v,i) => i>=10);
-        const dataSet = data.map(v => {return {name:v.word, data:v.score}});
+        const left_data = data.info.filter((v,i) => i<10);
+        const right_data = data.info.filter((v,i) => i>=10);
+        const dataSet = data.info.map(v => {return {name:v.word, data:v.score}});
         const category_icon = category == '스포츠' ? '⚽️' : category == '동물' ? '🐈' : category == '게임' ? '🎮' : '🍛'; 
         const code = `<div class="statistics_box">
                         <div class="dot"></div>
@@ -121,8 +122,8 @@ const showStatisticsBox = (category) => {
                                 <div class="tag">${category_icon} ${category} 카테고리 분석</div>
                             </div>
                             <div class="statistics_detail">
-                                <p>🔎 분석한 링크수 : 20개</p>
-                                <p>🔖 분석한 키워드수 : 3024개</p>
+                                <p>🔎 분석한 링크수 : ${data.category[0].cat_count}개</p>
+                                <p>🔖 분석한 키워드수 : ${data.word[0].word_count}개</p>
                             </div>
                         </div>
                         <div class="bottom">

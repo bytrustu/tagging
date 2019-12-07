@@ -1,5 +1,4 @@
 const mysql = require('mysql');
-const func = require('./func.js');
 
 module.exports.mysqlconfig = {
 	host : "133.186.216.202",

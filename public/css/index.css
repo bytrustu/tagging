@@ -2282,13 +2282,54 @@ a.detail_text:hover {
     z-index: 20;
 }
 
+.tag,
+.keyword_warp > span {
+    cursor: pointer;
+}
 
+.alert_message_warp {
+    position: absolute;
+    top: 60px;
+    right: 50px;
+    display: inline-block;
+    width: auto;
+}
+
+.alert_message_warp .message {
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    height: 50px;
+    width: 300px;
+    display: inline-block;
+    background-color: #0a4623;
+    color: #ffffff;
+    padding: 16px;
+    cursor: pointer;
+}
 
 
 
 
 
 /* Response  */
+
+@media screen and (max-width: 1600px) {
+    #headline.detail .container .detail_top .detail_left {
+        padding: 20px 0 0 136px;
+    }
+
+    #headline.detail .container .detail_top {
+        width: 100%;
+        height: calc(50% + 110px);
+        padding-top: 54px;
+    }
+
+    .analysis_result {
+        margin-top: 10px;
+    }
+
+
+}
 
 
 @media screen and (max-width: 1300px) {

@@ -1,3 +1,7 @@
+v1.0.49
+max-width 1600 size 추가
+hashtag 클릭시 clipboard 복사 추가 및 메세지 노출
+
 v1.0.48
 카테고리별 상세정보 통계 모달 추가
 

@@ -44,6 +44,11 @@ const convertDate = (d, isKr) => {
 
 $(document).ready(function(){
 
+    $(document).on('click', '.tag, .keyword_warp > span', function(){
+        console.log(this);
+        copyText(this);
+    });
+
     passWidth = $(window).width() < 416 ? -$(window).width() : -415;
     if ($(window).width() <= 416) {
         const elements = $('.item_list .item');
@@ -880,3 +885,20 @@ const analysisResult = (data_id, callback) => {
         }
     });
 }
+
+const copyText = (target) => {
+    const $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(target).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+    showCopyText();
+  }
+
+  const showCopyText = () => {
+      $('.alert_message_warp').html(`<div class="message animated fadeInDown"> 📌 해쉬태그가 복사 되었습니다.</div>`);
+      setTimeout(()=>{
+        $('.message').removeClass('fadeInDown');
+        $('.message').addClass('fadeOut');
+      },1000);
+  }

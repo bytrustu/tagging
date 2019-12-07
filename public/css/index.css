@@ -2328,7 +2328,9 @@ a.detail_text:hover {
         margin-top: 10px;
     }
 
-
+    #headline.detail .container .detail_bottom {
+        padding: 10px 30px;
+    }
 }
 
 
